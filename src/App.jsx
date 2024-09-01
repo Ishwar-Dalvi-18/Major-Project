@@ -8,6 +8,7 @@ import { SocketContext } from './contexts/socketContext';
 import Error from './pages/Error';
 import { UserContext } from './contexts/userContext';
 
+// starting point of app
 function App() {
   const [iswelcominguser, setIswelcominguser] = useState(true);
   const [currentpage, setCurrentpage] = useState("landing");
