@@ -1,0 +1,35 @@
+.home-imagedisplay-1{
+    background-image: url("./images/mp-home-2.jpg");
+    background-size: cover;
+}
+
+.home-imagedisplay-2{
+    background-image: url("./images/mp-home-1.jpg");
+    background-size: cover;
+}
+
+.home-imagedisplay-3{
+    background-image: url("./images/mp-home-3.jpg");
+    background-size: cover;
+}
+
+.home-imagedisplay-4{
+    background-image: url("./images/mp-home-4.jpg");
+    background-size: cover;
+}
+
+.home-imagedisplay-5{
+    background-image: url("./images/mp-home-5.jpg");
+    background-size: cover;
+}
+
+
+
+.feature{
+    background-color: rgba(240, 248, 255,0.8);
+}
+
+.home-popper{
+    background-color: rgba(143, 255, 197, 0.8);
+    transition: 3s;
+}
