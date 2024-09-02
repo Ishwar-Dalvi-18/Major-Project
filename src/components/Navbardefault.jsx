@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Navbar,
   MobileNav,
@@ -7,11 +7,13 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/userContext";
  
 export function Navbardefault() {
   const navigate = useNavigate();
   const [openNav, setOpenNav] = React.useState(false);
- 
+  const {user} = useContext(UserContext);
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -126,9 +128,9 @@ export function Navbardefault() {
           className="mr-4 cursor-pointer py-1.5 font-extrabold "
           style={{letterSpacing:"1px"}}
         >
-          Crop Sphere
+          Crop Vision
         </Typography>
-        {/* <div className="hidden lg:block">{navList}</div> */}
+        <div className="hidden lg:block">{Object.keys(user).length>0&&navList}</div>
         
         <div className="flex items-center gap-x-1">
           <Button onClick={
@@ -190,7 +192,7 @@ export function Navbardefault() {
       </div>
       <MobileNav open={openNav}>
         <div className="container mx-auto">
-          {/* {navList} */}
+          {Object.keys(user).length>0&&navList}
           <div className="flex items-center gap-x-1">
             <Button onClick={e=>{
               e.preventDefault();
