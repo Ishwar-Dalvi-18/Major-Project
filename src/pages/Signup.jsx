@@ -17,38 +17,59 @@ import {
     from 'mdb-react-ui-kit';
 import axios from 'axios';
 import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Signup() {
-    const {currentpage, setCurrentpage} =useOutletContext()
+    const { t } = useTranslation(["signup"]);
+    const { i18n } = useTranslation();
+    const { currentpage, setCurrentpage } = useOutletContext()
     const navigate = useNavigate();
-    const { settings, setsettings } = useAlert(3000);
+    const { settings, setsettings } = useAlert(4000);
     const [Name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmpassword] = useState("");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
-    useEffect(()=>{
+    useEffect(() => {
         setCurrentpage("signup")
-    },[])
+    }, [])
     const onRegisterHandler = async (e) => {
         setLoading(true)
         e.preventDefault();
         console.log("Clicked button")
         if (!Name || !email || !password || !confirmpassword) {
+            let message
+            if (i18n.language === "en") {
+                message = "Fill all credentials"
+            }
+            else if (i18n.language === "mr") {
+                message = "सर्व तपशील भरा"
+            } else if (i18n.language === "hi") {
+                message = "सभी विवरण भरें"
+            }
             setsettings({
                 type: 'error',
-                message: "Must fill all the fields",
+                message: message,
                 isShowing: true,
             })
         } else {
             if (confirmpassword !== password) {
+                let message
+                if (i18n.language === "en") {
+                    message = "Password and confirm password are not same"
+                }
+                else if (i18n.language === "mr") {
+                    message = "पासवर्ड आणि पुष्टी पासवर्ड समान नाहीत"
+                } else if (i18n.language === "hi") {
+                    message = "पासवर्ड और पुष्टि पासवर्ड मेल नहीं खाते"
+                }
                 setsettings({
                     type: 'error',
-                    message: "Password and confirm password are not same",
+                    message: message,
                     isShowing: true
                 })
             } else {
-                const result = await axios.post("http://192.168.0.224:8080/api/user", { name: Name, email: email, password: password });
+                const result = await axios.post("http://192.168.0.224:8080/api/user", { name: Name, email: email, password: password, lang: i18n.language });
                 console.log(result)
                 if (result.data.response.type) {
                     setsettings({
@@ -71,7 +92,7 @@ function Signup() {
     return (
         <>
             {
-                loading && <div style={{ width:"100vw",position : "fixed",top:"0",zIndex:"20",backgroundColor: `rgba(${0}, ${0}, ${0}, ${0.7}`, display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+                loading && <div style={{ width: "100vw", position: "fixed", top: "0", zIndex: "20", backgroundColor: `rgba(${0}, ${0}, ${0}, ${0.7}`, display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
                     <div
                         className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"
                         role="status">
@@ -97,34 +118,34 @@ function Signup() {
                                 <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
                                     <div className='m-5'>
-                                        <h1 className=" text-center" style={{ fontWeight: "bolder", fontSize: "5vh" }}>Sign up</h1>
+                                        <h1 className=" text-center" style={{ fontWeight: "bolder", fontSize: "5vh" }}>{t("title")}</h1>
                                     </div>
 
                                     <div className="d-flex flex-row align-items-center mb-4 ">
                                         <MDBIcon fas icon="user me-3" size='lg' />
-                                        <MDBInput value={Name} onChange={e => setName(e.target.value)} label='Your Name' id='form1' type='text' className='w-100' />
+                                        <MDBInput value={Name} onChange={e => setName(e.target.value)} label={t("input_name")} id='form1' type='text' className='w-100' />
                                     </div>
 
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <MDBIcon fas icon="envelope me-3" size='lg' />
-                                        <MDBInput value={email} onChange={e => setEmail(e.target.value)} label='Your Email' id='form2' type='email' />
+                                        <MDBInput value={email} onChange={e => setEmail(e.target.value)} label={t("input_email")} id='form2' type='email' />
                                     </div>
 
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <MDBIcon fas icon="lock me-3" size='lg' />
-                                        <MDBInput value={password} onChange={e => setPassword(e.target.value)} label='Password' id='form3' type='password' />
+                                        <MDBInput value={password} onChange={e => setPassword(e.target.value)} label={t("input_password")} id='form3' type='password' />
                                     </div>
 
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <MDBIcon fas icon="key me-3" size='lg' />
-                                        <MDBInput value={confirmpassword} onChange={e => setConfirmpassword(e.target.value)} label='Repeat your password' id='form4' type='password' />
+                                        <MDBInput value={confirmpassword} onChange={e => setConfirmpassword(e.target.value)} label={t("input_repeat_password")} id='form4' type='password' />
                                     </div>
 
                                     <div className='mb-4'>
-                                        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Agreed to our terms and conditions' />
+                                        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label={t("agreement_text")} />
                                     </div>
 
-                                    <MDBBtn onClick={onRegisterHandler} className='mb-4' size='lg'>Register</MDBBtn>
+                                    <MDBBtn onClick={onRegisterHandler} className='mb-4' size='lg'>{t("btn_text")}</MDBBtn>
 
                                 </MDBCol>
 

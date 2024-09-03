@@ -12,7 +12,7 @@ function CustomAlert({ settings }) {
   }
   return (
     <div className='flex' style={{justifyContent:'center', alignItems:"center"}}>
-      <Alert style={{ color: color, backgroundColor: bgcolor, textAlign: "center", margin: "4vh", display:"flex", alignItems:'center',justifyContent:"center"}} severity={settings.type}><div style={{}}>{settings.message}</div></Alert>
+      <Alert style={{ paddingLeft:"15px" , paddingRight:"15px" ,paddingTop:"5px", paddingBottom:"5px",color: color, backgroundColor: bgcolor, textAlign: "center", margin: "4vh", display:"flex", alignItems:'center',justifyContent:"center"}} severity={settings.type}><div style={{}}>{settings.message}</div></Alert>
     </div>
   )
 }

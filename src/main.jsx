@@ -10,6 +10,7 @@ import Landing from './pages/Landing.jsx'
 import Login from './pages/Login.jsx'
 import Profile from './pages/Profile.jsx'
 import Signup from './pages/Signup.jsx';
+
 const router = createBrowserRouter(createRoutesFromChildren(
   <Route path='/' element={<App/>}>
     <Route index element={<Navigate to={`/landingpage`} replace/>} />

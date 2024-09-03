@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useTransition } from 'react'
 import './Login.css'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import { Alert } from '@material-tailwind/react';
@@ -9,29 +9,40 @@ import axios from 'axios'
 import { UserContext } from '../contexts/userContext';
 import googlelogo from '../images/google.png'
 import { Button } from '@material-tailwind/react';
+import { useTranslation } from 'react-i18next';
 
 function Login() {
+    const {i18n} = useTranslation();
     const { currentpage, setCurrentpage } = useOutletContext();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { settings, setsettings } = useAlert(3000);
+    const { settings, setsettings } = useAlert(4000);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() => {
         setCurrentpage("login");
     }, [])
-
+    const {t} = useTranslation(["login"]);
     const onLoginHandler = async (e) => {
         e.preventDefault();
         if (!email || !password) {
+            let errmessage
+            if (i18n.language === "en") {
+                errmessage = "Fill all credentials"
+            }
+            else if (i18n.language === "mr") {
+                errmessage = "सर्व तपशील भरा"
+            } else if (i18n.language === "hi") {
+                errmessage = "सभी विवरण भरें"
+            }
             return setsettings({
                 type: "error",
-                message: "You must fill the credentials",
+                message: errmessage,
                 isShowing: true
             })
 
         }
-        const result = await axios.post("http://192.168.0.224:8080/api/user/login", { email: email, password: password }, {
+        const result = await axios.post("http://192.168.0.224:8080/api/user/login", { email: email, password: password ,lang:i18n.language }, {
             withCredentials: true,
         })
 
@@ -60,15 +71,15 @@ function Login() {
             <div className="shape" style={{ position: "fixed", bottom: "300px", right: "66vw" }}></div>
             <div className="shape" style={{ position: "fixed", top: "300px", left: "66vw" }}></div>
             <form className='my-form' id='my-form-1'>
-                <h3>Login Here</h3>
+                <h3>{t("title")}</h3>
 
-                <label htmlFor="username " className='my-label'>Email</label>
-                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className=' my-input' placeholder="Email or Phone" id="username" />
+                <label htmlFor="username " className='my-label'>{t("label-1")}</label>
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className=' my-input' placeholder={t("input_email")} id="username" />
 
-                <label htmlFor="password" className='my-label'>Password</label>
-                <input value={password} onChange={e => setPassword(e.target.value)} type="password" className=' my-input' placeholder="Password" id="password" />
+                <label htmlFor="password" className='my-label'>{t("label-2")}</label>
+                <input value={password} onChange={e => setPassword(e.target.value)} type="password" className=' my-input' placeholder={t("input_password")} id="password" />
 
-                <button className='my-button' style={{ fontFamily: "monospace", fontWeight: "bolder" }} onClick={onLoginHandler}>Log In</button>
+                <button className='my-button' style={{ fontFamily: "monospace", fontWeight: "bolder" }} onClick={onLoginHandler}>{t("login_btn")}</button>
                 <div className='px-2 py-4' onClick={e => {
                     window.open("http://localhost:8080/api/auth/google", "_self")
                 }} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -79,13 +90,13 @@ function Login() {
                         className="flex items-center gap-3"
                     >
                         <img src="https://docs.material-tailwind.com/icons/google.svg" alt="metamask" className="h-6 w-6" />
-                        Continue with Google
+                        {t("google_btn")}
                     </Button>
                 </div>
                 <label onClick={e => {
                     e.preventDefault();
                     navigate("/signup");
-                }} style={{ alignSelf: "center", color: 'lightblue' }}>create an Account &rarr;</label>
+                }} style={{ alignSelf: "center", color: 'lightblue' }}>{t("navigator_text")}&rarr;</label>
             </form>
             {
                 settings.isShowing ? <CustomAlert settings={settings} /> : <Alert severity="success" style={{ visibility: "hidden" }}>Block space alert</Alert>

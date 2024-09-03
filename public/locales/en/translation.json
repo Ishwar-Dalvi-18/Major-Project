@@ -1,0 +1,25 @@
+{
+    "website_name": "Crop Vision",
+    "login_btn_text": "Login",
+    "signup_btn_text": "Signup",
+    "feature-1":{
+        "title" : "Crop Disease Detection",
+        "description" : "You can detect diseases of your crop at early stage and can reduce the chances of facing big losses. Take Good decisions and earn more ."
+    },
+    "feature-2":{
+        "title" : "Daily Irrigation Reminders",
+        "description" : "Daily irrigation reminders ensuring that crop receives adequate amount of water . This reduces risk of over or under watering ."
+    },
+    "feature-3":{
+        "title" : "Market Insights",
+        "description" : "Insights into trends and demands of the market . This will help you decide what crop to grow and when to sell them for maximum profit ."
+    },
+    "feature-4":{
+        "title" : "Direct Products Sell To Customer",
+        "description" : "Sell products to customer directly without a middleman . Gain more profits ."
+    },
+    "feature-5":{
+        "title" : "Weather Forecast",
+        "description" : "Get wheather forecast at your sitting place . This will help you manage your crops efficently . Less losses more gains ."
+    }
+}

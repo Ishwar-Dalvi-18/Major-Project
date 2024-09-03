@@ -1,0 +1,10 @@
+{
+    "title" : "Login Here",
+    "label-1" : "Email",
+    "label-2" : "Password",
+    "login_btn" : "Log In",
+    "google_btn" : "CONTINUE WITH GOOGLE",
+    "navigator_text":"create an Account ",
+    "input_email" : "Email",
+    "input_password":"Password"
+}

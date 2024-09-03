@@ -1,0 +1,9 @@
+{
+    "title" : "Sign up",
+    "input_name" : "Your Name",
+    "input_email" : "Your Email",
+    "input_password" : "Password",
+    "input_repeat_password" : "Repeat your password",
+    "agreement_text": "Aggreed to our terms and conditions",
+    "btn_text":"Register"
+}

@@ -1,0 +1,9 @@
+{
+    "title" : "साइन अप करें",
+    "input_name" : "आपका नाम",
+    "input_email" : "आपका ईमेल",
+    "input_password" :"पासवर्ड",
+    "input_repeat_password" : "अपना पासवर्ड फिर से डालें",
+    "agreement_text": "हमारी शर्तों और नियमों से सहमत",
+    "btn_text":"रजिस्टर करें" 
+}

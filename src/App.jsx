@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import './App.css'
 import { Navbardefault } from './components/Navbardefault'
 import Landing from './pages/Landing'
@@ -7,6 +7,8 @@ import { io } from 'socket.io-client';
 import { SocketContext } from './contexts/socketContext';
 import Error from './pages/Error';
 import { UserContext } from './contexts/userContext';
+import './i18n.js'
+import Loader from './components/Loader.jsx';
 
 // starting point of app
 function App() {
@@ -29,6 +31,7 @@ function App() {
   }
   }, [])
   return (
+    <Suspense fallback={<Loader/>}>
     <SocketContext.Provider value={{socket}}>
       <UserContext.Provider value={{user,setUser}}>
       <>
@@ -41,6 +44,7 @@ function App() {
       </>
       </UserContext.Provider> 
     </SocketContext.Provider>
+    </Suspense>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import {
   Navbar,
   MobileNav,
@@ -8,19 +8,42 @@ import {
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/userContext";
- 
+import { useTranslation } from "react-i18next";
+import internetImg from '../images/internet.png'
+import './Navbardefault.css'
+
 export function Navbardefault() {
+  
+  const languages = useMemo(() => {
+    return [
+      { code: "en", lang: "English" },
+      { code: "mr", lang: "Marathi" },
+      { code: "hi", lang: "Hindi" }
+    ]
+  },)
+  const [showlanguageoptions, setShowlanguageoptions] = useState(false);
+  const onLanguageSelectHandler = useCallback((code)=>{
+    return (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
+      i18n.changeLanguage(code);
+      setShowlanguageoptions(false);
+    }
+  },[languages])
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const [openNav, setOpenNav] = React.useState(false);
-  const {user} = useContext(UserContext);
-
+  const { user } = useContext(UserContext);
   React.useEffect(() => {
+    const bottom = document.getElementById("internet_image").getBoundingClientRect().height;
+    const language_dropdown = document.getElementById("language_dropdown").style.top = `${bottom}px`;
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
- 
+
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -41,7 +64,7 @@ export function Navbardefault() {
             fill="#90A4AE"
           />
         </svg>
- 
+
         <a href="#" className="flex items-center">
           Pages
         </a>
@@ -118,38 +141,59 @@ export function Navbardefault() {
       </Typography>
     </ul>
   );
- 
+
   return (
     <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4 sticky top-5 mt-5 mb-5">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
           href="#"
-          className="mr-4 cursor-pointer py-1.5 font-extrabold "
-          style={{letterSpacing:"1px"}}
+          className="mr-1 cursor-pointer py-1.5 font-extrabold "
+          style={{ letterSpacing: "1px" }}
         >
-          Crop Vision
+          {t("website_name")}
         </Typography>
-        <div className="hidden lg:block">{Object.keys(user).length>0&&navList}</div>
-        
+        <div style={{ position: "relative" }}>
+          <img id="internet_image" onClick={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            setShowlanguageoptions(previousValue => !previousValue);
+          }} className="mr-4" style={{ height: "25px" }} src={internetImg}>
+          </img>
+          <span id="language_dropdown" style={{ visibility: showlanguageoptions ? "visible" : "hidden", position: "absolute", top: "0", backgroundColor: "whitesmoke", paddingTop: "15px", paddingBottom: "15px", borderColor: "white", borderWidth: "2px", borderStyle: "solid" }} className="rounded-lg">
+            <ul>
+              {
+                languages.map(value => {
+                  return (
+                    <li onClick={onLanguageSelectHandler(value.code)} style={{borderRadius:"12px",paddingLeft : "25px" ,paddingRight:"25px" , paddingTop:"3px" ,paddingBottom:"3px"}} key={value.code} className={i18n.language === value.code ?"selected":""}>
+                      {value.lang}
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </span>
+        </div>
+        <div className="hidden lg:block">{Object.keys(user).length > 0 && navList}</div>
+
         <div className="flex items-center gap-x-1">
           <Button onClick={
-            e=>{
+            e => {
               navigate('/login')
             }
           } variant="text" size="sm" className="hidden lg:inline-block">
-            <span>Log In</span>
+            <span>{t("login_btn_text")}</span>
           </Button>
           <Button
-          onClick={e=>{
-            e.preventDefault();
-            navigate("/signup");
-          }}
+            onClick={e => {
+              e.preventDefault();
+              navigate("/signup");
+            }}
             variant="gradient"
             size="sm"
             className="hidden lg:inline-block"
           >
-            <span>Sign in</span>
+            <span>{t("signup_btn_text")}</span>
           </Button>
         </div>
         <IconButton
@@ -192,19 +236,19 @@ export function Navbardefault() {
       </div>
       <MobileNav open={openNav}>
         <div className="container mx-auto">
-          {Object.keys(user).length>0&&navList}
+          {Object.keys(user).length > 0 && navList}
           <div className="flex items-center gap-x-1">
-            <Button onClick={e=>{
+            <Button onClick={e => {
               e.preventDefault();
               navigate("/login");
             }} fullWidth variant="text" size="sm" className="">
-              <span>Log In</span>
+              <span>{t("login_btn_text")}</span>
             </Button>
-            <Button onClick={e=>{
+            <Button onClick={e => {
               e.preventDefault();
               navigate("/signup");
-            }}fullWidth variant="gradient" size="sm" className="">
-              <span>Sign in</span>
+            }} fullWidth variant="gradient" size="sm" className="">
+              <span>{t("signup_btn_text")}</span>
             </Button>
           </div>
         </div>
