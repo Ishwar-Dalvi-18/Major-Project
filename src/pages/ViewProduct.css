@@ -1,0 +1,13 @@
+.product-container-info{
+    padding: 1em 5em;
+    user-select: none;
+
+    @media (max-width:750px) {
+        padding: 1em 2em;
+    };
+    @media (max-width:500px) {
+        padding: 1em 1em;
+    }
+
+
+}

@@ -10,22 +10,40 @@ import { UserContext } from '../contexts/userContext';
 import googlelogo from '../images/google.png'
 import { Button } from '@material-tailwind/react';
 import { useTranslation } from 'react-i18next';
+import { NetworkContext } from '../contexts/networkContext';
 
 function Login() {
-    const {i18n} = useTranslation();
+    const { i18n } = useTranslation();
     const { currentpage, setCurrentpage } = useOutletContext();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { settings, setsettings } = useAlert(4000);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const { url, setUrl } = useContext(NetworkContext);
     useEffect(() => {
         setCurrentpage("login");
+        axios.get(`${url}api/get/user`, { withCredentials: true }).then(value => {
+            console.log(value.data.response)
+            if (value.data.response.type) {
+                setUser({
+                    id: value.data.response.user.email
+                })
+                if(value.data.response.user.role==="farmer"){
+                    navigate("/profile")
+                }else{
+                    navigate("/user");
+                }
+                
+            }
+        })
     }, [])
-    const {t} = useTranslation(["login"]);
+    const { t } = useTranslation(["login"]);
     const onLoginHandler = async (e) => {
         e.preventDefault();
-        if (!email || !password) {
+        const selectedRole = document.querySelector('input[name="role"]:checked');
+        
+        if (!email || !password || !selectedRole) {
             let errmessage
             if (i18n.language === "en") {
                 errmessage = "Fill all credentials"
@@ -42,10 +60,13 @@ function Login() {
             })
 
         }
-        const result = await axios.post("http://192.168.0.224:8080/api/user/login", { email: email, password: password ,lang:i18n.language }, {
+        // const result = await axios.post("http://192.168.0.224:8080/api/user/login", { email: email, password: password ,lang:i18n.language }, {
+        //     withCredentials: true,
+        // })
+        const result = await axios.post(`${url}api/user/login`, { email: email, password: password, lang: i18n.language,role:selectedRole.value}, {
             withCredentials: true,
         })
-
+        console.log(result)
         if (result.data.response.type) {
             setsettings({
                 type: "success",
@@ -55,7 +76,11 @@ function Login() {
             setUser({
                 id: result.data.response.user.email
             })
-            navigate("/profile");
+            if(result.data.response.user.role==="farmer"){
+                navigate("/profile");
+            }else{
+                navigate("/user")
+            }
         } else {
             setsettings({
                 type: "error",
@@ -79,6 +104,21 @@ function Login() {
                 <label htmlFor="password" className='my-label'>{t("label-2")}</label>
                 <input value={password} onChange={e => setPassword(e.target.value)} type="password" className=' my-input' placeholder={t("input_password")} id="password" />
 
+                <label className='my-label'>Role</label>
+                <div style={{ paddingLeft:"1em", display: "flex", alignItems: "center", justifyContent: "flex-start", marginTop: "1em",backgroundColor:"rgba(255,255,255,0.07)" }}>
+
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems:"flex-start" }}>
+                        <div style={{display:"flex" , alignItems:"center"}}>
+                            <input style={{ marginRight: "1em" }} value={"farmer"} type="radio" name='role' id="role-farmer" />
+
+                            <label htmlFor="role-farmer" >Farmer</label>
+                        </div>
+                        <div style={{display:"flex" , alignItems:"center"}}>
+                            <input style={{ marginRight: "1em" }} value={"customer"} type="radio" name='role' id="role-customer"></input>
+                            <label htmlFor="role-customer" >Customer</label>
+                        </div>
+                    </div>
+                </div>
                 <button className='my-button' style={{ fontFamily: "monospace", fontWeight: "bolder" }} onClick={onLoginHandler}>{t("login_btn")}</button>
                 <div className='px-2 py-4' onClick={e => {
                     window.open("http://localhost:8080/api/auth/google", "_self")

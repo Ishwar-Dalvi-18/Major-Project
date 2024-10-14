@@ -1,0 +1,20 @@
+{
+    "feature1" : "Products",
+    "feature2" : "Customers",
+    "feature3" : "Weather",
+    "feature4" : "Languages",
+    "feature5" : "Disease Detection",
+    "mob_feature5" : "Disease Detection",
+    "account" : "Account",
+    "feature1_route1" : "Product Inventory",
+    "feature1_route2" : "Product Selled",
+    "feature1_route3" : "Product Review",
+    "feature2_route1" : "Customer Orders",
+    "feature2_route2" : "Customer Review",
+    "feature3_route1" : "Weather forecast",
+    "lang_1" : "English",
+    "lang_2" : "Marathi",
+    "lang_3" : "Hindi",
+    "profile" : "Profile",
+    "add_btn" : "Add Product"
+}

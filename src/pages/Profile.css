@@ -1,0 +1,211 @@
+body::-webkit-scrollbar{
+    visibility: hidden;
+    display: none;
+}
+
+.mynavbar-selection-box {
+    background-color: #212121;
+    border: 2px solid black;
+    border-radius: 1em;
+    padding: 5em;
+    visibility: hidden;
+    z-index: 30;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    @media (max-width:500px) {
+        width: 90vw;
+    }
+}
+
+.my-profile-nav {
+    user-select: none;
+    margin: 0em 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    /* border-radius: 7.5em; */
+    /* background-color: rgb(51, 49, 198); */
+    /* background-color: rgb(8, 144, 255); */
+    /* background-color: rgb(71, 109, 15); */
+    border-radius: 1.5em;
+    color: black;
+    display: flex;
+    gap: 5em;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    /* margin-top: 2em; */
+    justify-content: center;
+    align-items: center;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    @media (max-width:1000px) {
+        visibility: hidden;
+    }
+}
+.content{
+    z-index: 0;
+    position: static;
+}
+.my-profile-nav-item {
+    padding: 0.5em;
+    cursor: pointer;
+    position: relative
+}
+
+.sub-ul {
+    background-color: #212121;
+    border: 2px solid black;
+    border-radius: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    position: fixed;
+    color: white;
+}
+
+.sub-ul-item {
+    font-weight: bold;
+    border-radius: 5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 5em;
+    padding-right: 5em;
+    border-bottom: 2px solid rgb(89, 188, 188);
+    
+}
+
+.sub-ul-item:hover{
+    color: rgb(183, 216, 255);
+}
+
+
+.drop-down-arrow-img {
+    height: 0.7em;
+    transition: transform 0.3s ease-in-out;
+}
+
+.drop-down-arrow-img-f {
+    height: 1em;
+    transition: all 0.5s ease-in-out;
+}
+
+
+#profile-image-input {
+    display: none;
+}
+
+.mobile-nav-opener-container{
+    z-index: "10";
+    visibility: hidden;
+    position: sticky;
+    top: 0;
+    padding: 1em 0.5em;
+    background-color: #b5e784;
+    display: flex;
+    will-change: transform;
+    @media (max-width:1000px) {
+        visibility: visible;
+    }
+}
+.mobile-nav-opener{
+    @media (max-width:1000px) {
+        visibility: visible;
+    }
+}
+
+.mobile-nav::-webkit-scrollbar{
+    visibility: hidden;
+}
+.mobile-nav{
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    user-select: none;
+    border-top-right-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+    visibility: hidden;
+    border-right: 2px solid blueviolet;
+    z-index: 20;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    width:80vw;
+    height: 100vh;
+    overflow: auto;
+    max-width: 400px;
+    min-width: 350px;
+}
+
+.mob-nav-subfeature{
+    font-size: large;
+    font-style: normal;
+    margin-left: 4em;
+    margin-right: 1em;
+}
+
+.mob-nav-item{
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid blueviolet;
+    padding-left: 1em;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+.mob-nav-feature{
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+/* .mob-nav-feature:hover{
+    background-color: #4e4c4c;
+} */
+
+
+.mob-nav-feature *{
+    flex-shrink: 0.5;
+}
+
+.mob-nav-subfeature ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+   
+}
+.mob-nav-subfeature ul li{
+    min-width:10em;
+    font-size: 1em;
+    border: 2px solid green;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    border-radius: 0.5em;
+    @media (min-width:450px) {
+        padding-right: 4em;
+        
+    }
+}
+
+.mobile-nav-img{
+    height: 1em;
+}

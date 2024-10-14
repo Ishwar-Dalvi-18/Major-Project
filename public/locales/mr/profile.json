@@ -1,0 +1,20 @@
+{
+    "feature1": "उत्पादने",
+    "feature2": "ग्राहक",
+    "feature3": "हवामान",
+    "feature4": "भाषा",
+    "feature5": "रोग शोध",
+    "mob_feature5" : "रोग शोध",
+    "account" : "खाते",
+    "feature1_route1": "उत्पादन साठा",
+    "feature1_route2": "विकलेली उत्पादने",
+    "feature1_route3": "उत्पादन समीक्षा",
+    "feature2_route1": "ग्राहक आदेश",
+    "feature2_route2": "ग्राहक समीक्षा",
+    "feature3_route1": "हवामान अंदाज",
+    "lang_1": "इंग्रजी",
+    "lang_2": "मराठी",
+    "lang_3": "हिंदी",
+    "profile" : "प्रोफाइल",
+    "add_btn": "उत्पादन जोडा"
+}

@@ -1,0 +1,12 @@
+{
+    "username":"Username",
+    "email" : "Email",
+    "country" : "Country",
+    "state" : "State",
+    "contact" : "Contact Number",
+    "edit": "Edit",
+    "address" : "Address",
+    "save" : "Save",
+    "no_alert" : "Number must be of 10 digits",
+    "empty_alert" : "Please fill all the fields"
+}

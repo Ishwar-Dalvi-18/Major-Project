@@ -5,5 +5,11 @@
     "input_password" : "Password",
     "input_repeat_password" : "Repeat your password",
     "agreement_text": "Aggreed to our terms and conditions",
-    "btn_text":"Register"
+    "btn_text":"Register",
+    "next_btn":"Next",
+    "prev_btn":"Previous",
+    "input_country":"Country",
+    "input_state":"State",
+    "input_contact":"Contact Number",
+    "input_address":"Address"
 }

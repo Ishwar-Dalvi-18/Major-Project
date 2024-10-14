@@ -41,7 +41,7 @@ body{
     bottom: -80px;
 } */
 .my-form{
-    height: 520px;
+    height: 620px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -83,7 +83,7 @@ body{
     background-color: rgba(255,255,255,0.07);
     border-radius: 3px;
     padding: 0 10px;
-    margin-top: 8px;
+    margin-top: 6px;
     font-size: 14px;
     font-weight: 300;
 }

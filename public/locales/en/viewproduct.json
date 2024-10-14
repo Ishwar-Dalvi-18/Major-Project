@@ -1,0 +1,21 @@
+{
+    "name_p":"Product Name",
+    "quantity_p":"Product Quantity",
+    "price_p":"Product Price",
+    "name": "Name",
+    "quantity": "Quantity",
+    "count": "Count",
+    "unit": "Unit",
+    "price": "Price",
+    "amount": "Amount",
+    "currency": "Currency",
+    "save": "Save",
+    "add": "Add",
+    "name_err": "Please enter name of product",
+    "quantity_err": "Please fill all sub fields of quantity field",
+    "count_err": "Count of product should be positive",
+    "price_err": "Please fill all sub fields of price field",
+    "amount_err": "Amount cant be negative or zero",
+    "img_err": "Please select image for product",
+    "all_field_err": "Confirm all fields of product details"
+}

@@ -1,9 +1,15 @@
 {
-    "title" : "साइन अप करा",
-    "input_name" : "तुमचे नाव",
-    "input_email" : "तुमचा ईमेल",
-    "input_password" : "पासवर्ड",
-    "input_repeat_password" : "तुमचा पासवर्ड पुन्हा द्या",
+    "title": "साइन अप करा",
+    "input_name": "तुमचे नाव",
+    "input_email": "तुमचा ईमेल",
+    "input_password": "पासवर्ड",
+    "input_repeat_password": "तुमचा पासवर्ड पुन्हा द्या",
     "agreement_text": "आमच्या अटी आणि शर्तींना सहमती दर्शवली",
-    "btn_text":"नोंदणी करा"
+    "btn_text": "नोंदणी करा",
+    "next_btn": "पुढे",
+    "prev_btn": "मागील",
+    "input_country": "देश",
+    "input_state": "राज्य",
+    "input_contact": "संपर्क क्रमांक",
+    "input_address": "पत्ता"
 }

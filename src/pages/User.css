@@ -1,0 +1,47 @@
+.user-main-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.user-display-container{
+    display: flex;
+    height: 100%;
+}
+
+.user-nav{
+    padding-top: 3em;
+  width: 15%;
+  min-width: 200px;
+  scrollbar-base-color: whitesmoke;
+  overflow: auto;
+}
+
+.user-home{
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-top-left-radius: 2em;
+}
+
+
+.user-nav-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin : 1em 0px;
+    padding-left: 2em;
+}
+
+.user-extra-info-header{
+    padding: 0em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 3em;
+    background-color: rgb(124, 169, 124);
+    color: black;
+    position: sticky;
+    top: 0;
+    border-bottom: 2px solid whitesmoke;
+}

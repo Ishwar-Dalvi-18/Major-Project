@@ -1,0 +1,20 @@
+{
+    "feature1": "उत्पाद",
+    "feature2": "ग्राहक",
+    "feature3": "मौसम",
+    "feature4": "भाषाएँ",
+    "feature5": "रोग पहचान",
+    "mob_feature5" : "रोग पहचान",
+    "account" : "खाता",
+    "feature1_route1": "उत्पाद सूची",
+    "feature1_route2": "बेचे गए उत्पाद",
+    "feature1_route3": "उत्पाद समीक्षा",
+    "feature2_route1": "ग्राहक आदेश",
+    "feature2_route2": "ग्राहक समीक्षा",
+    "feature3_route1": "मौसम पूर्वानुमान",
+    "lang_1": "अंग्रेज़ी",
+    "lang_2": "मराठी",
+    "lang_3": "हिंदी",
+    "profile" : "प्रोफ़ाइल",
+    "add_btn": "उत्पाद जोड़ें"
+}
