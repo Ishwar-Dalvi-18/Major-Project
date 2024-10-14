@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import './User.css'
+import nav_bar_img from '../images/navigation-bar.png'
 
 
 const isWrapping = (element) => {
@@ -10,18 +11,27 @@ const isWrapping = (element) => {
   element.style.whiteSpace = "nowrap"
   return (initialheight) > afterHeight
 }
+
+
 function User() {
+  const navigate = useNavigate()
   const typed_text_value = "Buy Products Direct From Farmers"
   const [typed_text_display, setTyped_text_display] = useState("");
   const [blinkCursor, setBlinkCursor] = useState(false);
   const h1_ref = useRef(null);
+  const [showmobilenav, setShowmobilenav] = useState(false);
+  const desktopnav_ref = useRef(null);
   useEffect(() => {
     document.body.style.backgroundColor = "white"
     let index = 0;
     let slice_count = 0;
     let wrapdetected = false;
+    if(desktopnav_ref){
+      if(getComputedStyle(desktopnav_ref.current).visibility==="hidden"){
+        setShowmobilenav(true);
+      }
+    }
     setInterval(() => {
-
       setTyped_text_display(pre => typed_text_value.slice(slice_count, index + 1));
       if (!wrapdetected) {
         if (isWrapping(h1_ref.current)) {
@@ -47,36 +57,66 @@ function User() {
       setBlinkCursor(pre => !pre)
     }, 100)
   }, [])
+
   return (
     <div className='user-main-container'>
       <div className='user-extra-info-header'>
         <h1 ref={h1_ref} style={blinkCursor ? {
+          fontWeight: "bold",
           fontSize: "2em",
-          color: "black",
+          color: "inherit",
           borderRight: "3px solid blue",
-          whiteSpace:"nowrap"
+          whiteSpace: "nowrap"
         } : {
+          fontWeight: "bold",
           fontSize: "2em",
-          color: "black",
-          whiteSpace:"nowrap",
+          color: "inherit",
+          whiteSpace: "nowrap",
         }}>{typed_text_display}</h1>
 
       </div>
-      <div className='user-display-container'>
-        <nav className='user-nav'>
-          <div className='user-nav-item'>
-            Buy Products
-          </div>
-          <div className='user-nav-item'>
-            Products Purchased
-          </div>
-          <div className='user-nav-item'>
-            Products Cart
-          </div>
-          <div className='user-nav-item'>
-            Profile
-          </div>
-        </nav>
+      <div style={{
+        position:"relative"
+      }} className='user-display-container'>
+        {
+          showmobilenav&&<div style={{
+            backgroundColor:"rgb(124, 169, 124)",
+            position:"fixed",
+            top:"1em",
+            left:"0.5em",
+            zIndex:"20"
+          }}>
+          <img onClick={e => {
+          }} style={{
+              height: "2.5em"
+          }}
+              src={nav_bar_img} alt="" />
+      </div>
+        }
+        {
+          !showmobilenav&&<nav ref={desktopnav_ref} className='user-nav'>
+            <div onClick={e => {
+              navigate("/user/buy")
+            }} className='user-nav-item'>
+              Buy Products
+            </div>
+            <div onClick={e => {
+              navigate("/user/purchased")
+            }} className='user-nav-item'>
+              Products Purchased
+            </div>
+            <div onClick={e => {
+              navigate("/user/cart")
+            }} className='user-nav-item'>
+              Products Cart
+            </div>
+            <div onClick={e => {
+              navigate("/user/profile")
+            }} className='user-nav-item'>
+              Profile
+            </div>
+          </nav>
+        }
         <Outlet />
       </div>
     </div>

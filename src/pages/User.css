@@ -1,39 +1,64 @@
-.user-main-container{
+.user-main-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-.user-display-container{
+.user-display-container {
     display: flex;
     height: 100%;
 }
 
-.user-nav{
+.user-nav {
     padding-top: 3em;
-  width: 15%;
-  min-width: 200px;
-  scrollbar-base-color: whitesmoke;
-  overflow: auto;
+    width: 15%;
+    min-width: 200px;
+    scrollbar-base-color: whitesmoke;
+    overflow: auto;
+
+    @media (max-width:768px) {
+        visibility: hidden;
+    }
 }
 
-.user-home{
+.user-universal {
     width: 100%;
     background-color: black;
-    color: white;
+    color: rgb(255, 255, 255);
     border-top-left-radius: 2em;
+    padding: 2em;
+    overflow: auto;
+    @media (max-width:600px) {
+        padding:2em 0em; 
+        border-radius: 0;    
+    }
 }
 
 
-.user-nav-item{
+.user-nav-item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin : 1em 0px;
+    margin: 1em 0px;
     padding-left: 2em;
 }
 
-.user-extra-info-header{
+.user-buy-search {
+        background-color: rgb(31, 30, 30);
+        padding:1em 3em;
+        margin:0.3em 3em;
+        border-radius:2em;
+        display:flex;
+        gap:2em;
+        @media (max-width:600px) {
+            padding:0;     
+            background-color: inherit;
+            gap: 0.5em;
+            margin: 0.3em 1em;
+        }
+}
+
+.user-extra-info-header {
     padding: 0em 2em;
     display: flex;
     align-items: center;
@@ -44,4 +69,7 @@
     position: sticky;
     top: 0;
     border-bottom: 2px solid whitesmoke;
+    @media (max-width:600px) {
+        color: whitesmoke; 
+    }
 }
