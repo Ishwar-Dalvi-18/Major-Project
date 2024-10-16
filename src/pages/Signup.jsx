@@ -157,9 +157,9 @@ function Signup() {
                 </div>
                 <MDBContainer fluid style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
 
-                    <MDBCard className='text-black' style={{ width: "100%", borderRadius: '25px', height: "90%" }}>
-                        <MDBCardBody style={{ display: "flex", flexDirection: "row" }}>
-                            <MDBRow style={{ alignSelf: "center" }}>
+                    <MDBCard className='text-black' style={{ width: "100%", borderRadius: '25px', height: "95%" ,display:"flex" , justifyContent:"center" , alignItems:"center" }}>
+                        <MDBCardBody style={{ display: "flex", flexDirection: "row" , width:"100%",justifyContent:"center" ,alignItems:"center" }}>
+                            <MDBRow style={{ alignSelf: "center",display:"flex" , flexDirection:"row",justifyContent:"center" ,alignItems:"center" }}>
                                 <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
                                     <div className='m-5'>
@@ -186,7 +186,7 @@ function Signup() {
                                                 <MDBIcon fas icon="key me-3" size='lg' />
                                                 <MDBInput value={confirmpassword} onChange={e => setConfirmpassword(e.target.value)} label={t("input_repeat_password")} id='form4' type='password' />
                                             </div>
-                                            <MDBBtn onClick={e => { setNextpage(true) }} className='mb-4' size='lg'>{t("next_btn")}</MDBBtn>
+                                            <MDBBtn style={{padding:"1em 3em" }} onClick={e => { setNextpage(true) }} className='mb-4' size='lg'>{t("next_btn")}</MDBBtn>
                                         </>}
                                     {
                                         nextpage && <>
@@ -222,18 +222,24 @@ function Signup() {
                                                 </select>
                                             </div>
 
-                                            <div className='mb-4'>
+                                            {/* <div className='mb-4'>
                                                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label={t("agreement_text")} />
-                                            </div>
-                                            <MDBCol>
-                                                <MDBBtn style={{ marginRight: "1em" }} onClick={e => { setNextpage(false) }} className='mb-4' size='lg'>{t("prev_btn")}</MDBBtn>
-                                                <MDBBtn onClick={onRegisterHandler} className='mb-4' size='lg'>{t("btn_text")}</MDBBtn>
+                                            </div> */}
+                                            <MDBCol style={{
+                                                display:"flex",
+                                                alignItems:"center",
+                                                justifyContent:"center",
+                                                flexWrap:"wrap",
+                                                gap:"1em"
+                                            }}>
+                                                <MDBBtn style={{padding:"1em 3em" }} onClick={e => { setNextpage(false) }} className='mb-4' size='lg'>{t("prev_btn")}</MDBBtn>
+                                                <MDBBtn style={{padding:"1em 3em" }} onClick={onRegisterHandler} className='mb-4' size='lg'>{t("btn_text")}</MDBBtn>
                                             </MDBCol>
                                         </>}
                                 </MDBCol>
 
                                 <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                                    <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
+                                    <MDBCardImage style={{height:"25vw"}} src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
                                 </MDBCol>
 
                             </MDBRow>
