@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import './User.css'
 import nav_bar_img from '../images/navigation-bar.png'
+import { customerNavigationContext } from '../contexts/customerNavigationContext'
 
 
 const isWrapping = (element) => {
@@ -21,13 +22,15 @@ function User() {
   const h1_ref = useRef(null);
   const [showmobilenav, setShowmobilenav] = useState(false);
   const desktopnav_ref = useRef(null);
+  const [info, setInfo] = useState({})
   useEffect(() => {
     document.body.style.backgroundColor = "white"
+    
     let index = 0;
     let slice_count = 0;
     let wrapdetected = false;
-    if(desktopnav_ref){
-      if(getComputedStyle(desktopnav_ref.current).visibility==="hidden"){
+    if (desktopnav_ref) {
+      if (getComputedStyle(desktopnav_ref.current).visibility === "hidden") {
         setShowmobilenav(true);
       }
     }
@@ -52,10 +55,10 @@ function User() {
       } else {
         index = index + 1;
       }
-    }, 100)
+    }, 200)
     setInterval(() => {
       setBlinkCursor(pre => !pre)
-    }, 100)
+    }, 200)
   }, [])
 
   return (
@@ -75,49 +78,52 @@ function User() {
         }}>{typed_text_display}</h1>
 
       </div>
+      
       <div style={{
-        position:"relative"
+        position: "relative"
       }} className='user-display-container'>
         {
-          showmobilenav&&<div style={{
-            backgroundColor:"rgb(124, 169, 124)",
-            position:"fixed",
-            top:"1em",
-            left:"0.5em",
-            zIndex:"20"
+          showmobilenav && <div style={{
+            backgroundColor: "rgb(124, 169, 124)",
+            position: "fixed",
+            top: "1em",
+            left: "0.5em",
+            zIndex: "20"
           }}>
-          <img onClick={e => {
-          }} style={{
+            <img onClick={e => {
+            }} style={{
               height: "2.5em"
-          }}
+            }}
               src={nav_bar_img} alt="" />
-      </div>
+          </div>
         }
         {
-          !showmobilenav&&<nav ref={desktopnav_ref} className='user-nav'>
+          !showmobilenav && <nav ref={desktopnav_ref} className='user-nav'>
             <div onClick={e => {
               navigate("/user/buy")
-            }} className='user-nav-item'>
+            }} style={info.currentpage==="buy"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
               Buy Products
             </div>
             <div onClick={e => {
               navigate("/user/purchased")
-            }} className='user-nav-item'>
+            }} style={info.currentpage==="purchased"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
               Products Purchased
             </div>
             <div onClick={e => {
               navigate("/user/cart")
-            }} className='user-nav-item'>
+            }} style={info.currentpage==="cart"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
               Products Cart
             </div>
             <div onClick={e => {
               navigate("/user/profile")
-            }} className='user-nav-item'>
+            }} style={info.currentpage==="profile"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
               Profile
             </div>
           </nav>
         }
-        <Outlet />
+        <customerNavigationContext.Provider value={{info,setInfo}}>
+          <Outlet />
+        </customerNavigationContext.Provider>
       </div>
     </div>
   )

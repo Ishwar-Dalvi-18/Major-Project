@@ -6,11 +6,10 @@ import { NetworkContext } from '../contexts/networkContext';
 import { ProductContext } from '../contexts/product';
 import delete_img from '../images/delete.png'
 
-function Product(
+function CustomerProduct(
   {
     id,
     name,
-    quantity,
     price,
     img
   }
@@ -20,10 +19,7 @@ function Product(
   const navigate = useNavigate();
   const { url } = useContext(NetworkContext)
   useEffect(() => {
-    if (id) {
-    }
   })
-  const { product, setProduct } = useContext(ProductContext);
   return (
     <div>
 
@@ -39,9 +35,9 @@ function Product(
           justifySelf: "center",
           alignSelf: "center",
           border: "2px solid white",
-          height: "4em",
-          width: "4em",
-          borderRadius: "50%",
+          height: "7em",
+          width: "100%",
+          borderRadius: "1em",
           objectFit: "cover"
         }} src={img} alt="" />
         <div className='row'>
@@ -50,25 +46,15 @@ function Product(
             color:"whitesmoke"
           }}>{t("p_name")}</div>:<div>{name}</div>
         </div>
-        <div className='row'>
-          <div style={{
-            fontWeight:"bold",
-            color:"whitesmoke"
-          }} >{t("p_quantity")}</div>:<div>{`${quantity.count} ${quantity.unit}`}</div>
-        </div>
+       
         <div className='row'>
           <div style={{
             fontWeight:"bold",
             color:"whitesmoke"
           }}>{t("p_price")}</div>:<div>{`${price.amount} ${price.currency} per ${price.unit}`}</div>
         </div>
-        <button onClick={e => {
-          console.log(`Id : ${id}`)
-          setProduct({
-            type: "VIEW/EDIT",
-            id: id
-          })
-          navigate("/viewproduct")
+        <button onClick={e=>{
+            navigate("/user/viewproduct")
         }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded">
           {t("p_btn")}
         </button>
@@ -77,4 +63,4 @@ function Product(
   )
 }
 
-export default Product
+export default CustomerProduct

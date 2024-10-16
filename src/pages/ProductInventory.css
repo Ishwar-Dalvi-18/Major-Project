@@ -32,8 +32,6 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em;
-    box-sizing: border-box;
-
     @media (max-width:555px) {}
 }
 
@@ -41,6 +39,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.5em;
+}
+
+.row *{
+    width: fit-content;
+    padding: 0;
 }
 
 .pi-features-container {
