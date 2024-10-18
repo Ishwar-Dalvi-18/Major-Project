@@ -1,5 +1,5 @@
 import './ProductInventory.css'
-import Product from '../components/product'
+import Product from '../components/Product'
 import { Button } from '@material-tailwind/react'
 
 import React, { useContext, useEffect, useState } from 'react'

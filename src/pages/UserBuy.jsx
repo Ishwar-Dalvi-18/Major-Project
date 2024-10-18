@@ -131,11 +131,12 @@ function UserBuy() {
               })
               setUsersearch("")
               setSearchProducts([])
-              close_img_ref.current.style.filter = "invert(70%)"
-              setTimeout(() => {
-                close_img_ref.current.style.filter = "invert(100%)"
-              }, 100)
-            }} ref={close_img_ref} style={{ filter: "invert(100%)", height: "1.5em", position: "absolute", right: "1em", top: "50%", transform: "translateY(-50%)" }} src={close} alt="" />
+              
+              // close_img_ref.current.style.filter = "invert(70%)"
+              // setTimeout(() => {
+              //   close_img_ref.current.style.filter = "invert(100%)"
+              // }, 100)
+            }} ref={close_img_ref} style={{position: "absolute", top: "50%", transform: "translateY(-50%)" }} src={close} alt="" />
           </MDBInput>
           <MDBBtn onClick={async e => {
             if (usersearch) {
@@ -160,7 +161,7 @@ function UserBuy() {
         }}>
           {
             producttoshow.map(value =>
-              <CustomerProduct key={value._id} id={value._id} name={value.name} img={value.image} price={value.price} />
+              <CustomerProduct key={value._id} _id={value._id} name={value.name} img={value.image} price={value.price} />
             )
           }
         </div>

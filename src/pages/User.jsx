@@ -3,7 +3,8 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import './User.css'
 import nav_bar_img from '../images/navigation-bar.png'
 import { customerNavigationContext } from '../contexts/customerNavigationContext'
-
+import CustomerProductView from './CustomerProductView'
+import { customerProductContext } from '../contexts/customerProductContext'
 
 const isWrapping = (element) => {
   const afterHeight = element.clientHeight;
@@ -23,9 +24,10 @@ function User() {
   const [showmobilenav, setShowmobilenav] = useState(false);
   const desktopnav_ref = useRef(null);
   const [info, setInfo] = useState({})
+  const [id, setId] = useState("")
   useEffect(() => {
     document.body.style.backgroundColor = "white"
-    
+
     let index = 0;
     let slice_count = 0;
     let wrapdetected = false;
@@ -65,34 +67,35 @@ function User() {
     <div className='user-main-container'>
       <div className='user-extra-info-header'>
         <h1 ref={h1_ref} style={blinkCursor ? {
-          fontWeight: "bold",
-          fontSize: "2em",
+          fontWeight: "500",
+          fontSize: "1.5em",
           color: "inherit",
           borderRight: "3px solid blue",
           whiteSpace: "nowrap"
         } : {
-          fontWeight: "bold",
-          fontSize: "2em",
+          fontWeight: "500",
+          fontSize: "1.5em",
           color: "inherit",
           whiteSpace: "nowrap",
         }}>{typed_text_display}</h1>
 
       </div>
-      
+
       <div style={{
         position: "relative"
       }} className='user-display-container'>
         {
           showmobilenav && <div style={{
-            backgroundColor: "rgb(124, 169, 124)",
+            backgroundColor: "black",
             position: "fixed",
-            top: "1em",
-            left: "0.5em",
+            top: "0.5em",
+            left: "0em",
             zIndex: "20"
           }}>
             <img onClick={e => {
             }} style={{
-              height: "2.5em"
+              height: "2.5em",
+              filter: "invert(50%)"
             }}
               src={nav_bar_img} alt="" />
           </div>
@@ -101,28 +104,30 @@ function User() {
           !showmobilenav && <nav ref={desktopnav_ref} className='user-nav'>
             <div onClick={e => {
               navigate("/user/buy")
-            }} style={info.currentpage==="buy"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
+            }} style={info.currentpage === "buy" ? { color: "blue", fontWeight: "bold" } : {}} className='user-nav-item'>
               Buy Products
             </div>
             <div onClick={e => {
               navigate("/user/purchased")
-            }} style={info.currentpage==="purchased"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
+            }} style={info.currentpage === "purchased" ? { color: "blue", fontWeight: "bold" } : {}} className='user-nav-item'>
               Products Purchased
             </div>
             <div onClick={e => {
               navigate("/user/cart")
-            }} style={info.currentpage==="cart"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
+            }} style={info.currentpage === "cart" ? { color: "blue", fontWeight: "bold" } : {}} className='user-nav-item'>
               Products Cart
             </div>
             <div onClick={e => {
               navigate("/user/profile")
-            }} style={info.currentpage==="profile"?{color:"blue",fontWeight:"bold"}:{}} className='user-nav-item'>
+            }} style={info.currentpage === "profile" ? { color: "blue", fontWeight: "bold" } : {}} className='user-nav-item'>
               Profile
             </div>
           </nav>
         }
-        <customerNavigationContext.Provider value={{info,setInfo}}>
-          <Outlet />
+        <customerNavigationContext.Provider value={{ info, setInfo }}>
+          <customerProductContext.Provider value={{id:id,setId:setId}} >
+            <Outlet />
+          </customerProductContext.Provider>
         </customerNavigationContext.Provider>
       </div>
     </div>

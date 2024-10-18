@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { NetworkContext } from '../contexts/networkContext';
 import { ProductContext } from '../contexts/product';
 import delete_img from '../images/delete.png'
+import { customerProductContext } from '../contexts/customerProductContext';
 
 function CustomerProduct(
   {
-    id,
+    _id,
     name,
     price,
     img
@@ -17,7 +18,8 @@ function CustomerProduct(
 
   const { t } = useTranslation(["product"]);
   const navigate = useNavigate();
-  const { url } = useContext(NetworkContext)
+  const { url } = useContext(NetworkContext);
+  const { id, setId } = useContext(customerProductContext);
   useEffect(() => {
   })
   return (
@@ -42,19 +44,20 @@ function CustomerProduct(
         }} src={img} alt="" />
         <div className='row'>
           <div style={{
-            fontWeight:"bold",
-            color:"whitesmoke"
+            fontWeight: "bold",
+            color: "whitesmoke"
           }}>{t("p_name")}</div>:<div>{name}</div>
         </div>
-       
+
         <div className='row'>
           <div style={{
-            fontWeight:"bold",
-            color:"whitesmoke"
+            fontWeight: "bold",
+            color: "whitesmoke"
           }}>{t("p_price")}</div>:<div>{`${price.amount} ${price.currency} per ${price.unit}`}</div>
         </div>
-        <button onClick={e=>{
-            navigate("/user/viewproduct")
+        <button onClick={e => {
+          setId(_id);
+          navigate("/user/viewproduct")
         }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded">
           {t("p_btn")}
         </button>
