@@ -104,7 +104,6 @@ function ViewProduct({
             }, 3000)
         }
         else {
-
             message_ref.current.style.display = "none"
         }
     }, [showMessage])

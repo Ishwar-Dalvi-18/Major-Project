@@ -72,7 +72,7 @@ function CustomerProductView() {
           Product Information
         </div>
         <div style={{
-          backgroundColor: "rgb(55,55,55)",
+          backgroundColor: "rgb(0,0,0)",
           border: "0.1em solid rgb(27, 24, 24)",
           borderTopRightRadius: "1em",
           borderBottomRightRadius: "1em",
@@ -160,7 +160,7 @@ function CustomerProductView() {
           Seller Information
         </div>
         <div style={{
-          backgroundColor: "rgb(55,55,55)",
+          backgroundColor: "rgb(0,0,0)",
           border: "0.1em solid rgb(27, 24, 24)",
           borderTopRightRadius: "1em",
           borderBottomRightRadius: "1em",
@@ -349,7 +349,10 @@ function CustomerProductView() {
 
         </div>
 
-        <div style={{
+        <div onClick={e=>{
+          e.preventDefault();
+          quantity_ref.current.focus()
+        }} style={{
           marginTop: "2em",
           backgroundColor: "rgb(55,55,55)",
           borderRadius: "1em",
@@ -363,7 +366,10 @@ function CustomerProductView() {
             margin: "1em 0em",
 
           }}>
-            <input onFocus={e => {
+            <input onBlur={e=>{
+              quantity_ref.current.style.fontSize = "1em"
+            }} onFocus={e => {
+              quantity_ref.current.style.fontSize = "1.7em"
               quantity_ref.current.style.outline = "0px solid transparent"
             }} ref={quantity_ref} value={noOfProductToPurchase} onChange={e => {
               if (e.target.value.length > 0) {
@@ -389,7 +395,8 @@ function CustomerProductView() {
             }} />
           </div>
           <div style={{
-            color: "white"
+            color: "white",
+            userSelect:"none"
           }}>
             {productInfo.price.unit} of {productInfo.name}
           </div>

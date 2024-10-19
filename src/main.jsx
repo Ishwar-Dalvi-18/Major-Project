@@ -19,6 +19,7 @@ import UserBuy from './pages/UserBuy.jsx';
 import UserPurchased from './pages/UserPurchased.jsx';
 import UserCart from './pages/UserCart.jsx';
 import CustomerProductView from './pages/CustomerProductView.jsx';
+import CustomerInfo from './pages/CustomerInfo.jsx';
 
 const router = createBrowserRouter(createRoutesFromChildren(
   <Route path='/' element={<App />}>
@@ -33,7 +34,7 @@ const router = createBrowserRouter(createRoutesFromChildren(
       <Route path='buy' element={<UserBuy />} replace />
       <Route path='purchased' element={<UserPurchased/>}/>
       <Route path='cart' element={<UserCart/>}/>
-      <Route path='profile' element={<MyInfo/>}/>
+      <Route path='profile' element={<CustomerInfo/>}/>
       <Route path='viewproduct' element={<CustomerProductView/>}/>
     </Route>
     <Route path='signup' element={<Signup />} />

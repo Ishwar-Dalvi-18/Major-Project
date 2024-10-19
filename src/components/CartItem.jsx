@@ -2,25 +2,32 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { NetworkContext } from '../contexts/networkContext';
 import { MDBBtn } from 'mdb-react-ui-kit';
+import { customerProductContext } from '../contexts/customerProductContext';
+import { useNavigate } from 'react-router-dom';
 
 function CartItem({
     id,
     quantity,
     reload,
     setReload,
-    index
+    index,
 }) {
     const { url } = useContext(NetworkContext)
     const [productInfo, setProductInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+    const { setId } = useContext(customerProductContext);
+    const [firstLoad, setFirstLoad] = useState(true);
     useEffect(() => {
         setIsLoading(true);
         axios.get(`${url}api/product/${id}`, { withCredentials: true }).then(value => {
             if (value.data.response.type) {
                 setProductInfo(value.data.response.product)
                 setIsLoading(false);
+                setFirstLoad(false);
             }
         })
+        
     }, [reload])
     return (
         <> {
@@ -73,7 +80,10 @@ function CartItem({
                                 setReload(true)
                             }
                         }}>Delete</MDBBtn>
-                        <MDBBtn>View</MDBBtn>
+                        <MDBBtn onClick={e => {
+                            setId(id);
+                            navigate("/user/viewproduct")
+                        }}>View</MDBBtn>
                     </div>
                 </div>
         }

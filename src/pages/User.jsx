@@ -5,6 +5,7 @@ import nav_bar_img from '../images/navigation-bar.png'
 import { customerNavigationContext } from '../contexts/customerNavigationContext'
 import CustomerProductView from './CustomerProductView'
 import { customerProductContext } from '../contexts/customerProductContext'
+import close_img from '../images/close.png'
 
 const isWrapping = (element) => {
   const afterHeight = element.clientHeight;
@@ -24,7 +25,8 @@ function User() {
   const [showmobilenav, setShowmobilenav] = useState(false);
   const desktopnav_ref = useRef(null);
   const [info, setInfo] = useState({})
-  const [id, setId] = useState("")
+  const [id, setId] = useState("");
+  const mobile_nav_ref = useRef(null);
   useEffect(() => {
     document.body.style.backgroundColor = "white"
 
@@ -65,6 +67,112 @@ function User() {
 
   return (
     <div className='user-main-container'>
+      <div ref={mobile_nav_ref} className='user-mobile-nav'>
+        <div style={{
+          width:"100%",
+          display:"flex",
+          flexDirection:"column",
+          padding:"1em",
+          marginBottom:"2em",
+        }}>
+          <img onClick={e=>{
+            e.preventDefault();
+            mobile_nav_ref.current.style.opacity = '0'
+            setTimeout(()=>{
+              mobile_nav_ref.current.style.visibility = "hidden"
+            },200)
+          }} style={{
+            filter:"invert(100%)",
+            justifySelf:"flex-end",
+            alignSelf:"flex-end",
+            height:"2em"
+          }} src={close_img} alt="" />
+        </div>
+        <div onClick={e=>{
+          mobile_nav_ref.current.style.opacity = '0'
+          setTimeout(()=>{
+            mobile_nav_ref.current.style.visibility = "hidden"
+          },200)
+          navigate("/user/buy")
+        }} style={info.currentpage==="buy"?{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+          color: "blue", 
+          fontWeight: "bold"
+        }:{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+        }}>
+          Buy Products
+        </div>
+        <div onClick={e=>{
+          mobile_nav_ref.current.style.opacity = '0'
+          setTimeout(()=>{
+            mobile_nav_ref.current.style.visibility = "hidden"
+          },200)
+          navigate("/user/purchased")
+        }} style={info.currentpage==="purchased"?{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+          color: "blue", 
+          fontWeight: "bold"
+        }:{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+        }}>
+          Products Purchased
+        </div>
+        <div onClick={e=>{
+          mobile_nav_ref.current.style.opacity = '0'
+          setTimeout(()=>{
+            mobile_nav_ref.current.style.visibility = "hidden"
+          },200)
+          navigate("/user/cart")
+        }} style={info.currentpage==="cart"?{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+          color: "blue", 
+          fontWeight: "bold"
+        }:{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+        }}>
+          Products Cart
+        </div>
+        <div onClick={e=>{
+          mobile_nav_ref.current.style.opacity = '0'
+          setTimeout(()=>{
+            mobile_nav_ref.current.style.visibility = "hidden"
+          },200)
+          navigate("/user/profile")
+        }} style={info.currentpage==="profile"?{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+          color: "blue", 
+          fontWeight: "bold"
+        }:{
+          width:"100%",
+          paddingLeft:"1em",
+          fontSize:"1.5em",
+          marginBottom:"0.5em",
+        }}>
+          Profile
+        </div>
+      </div>
       <div className='user-extra-info-header'>
         <h1 ref={h1_ref} style={blinkCursor ? {
           fontWeight: "500",
@@ -93,6 +201,8 @@ function User() {
             zIndex: "20"
           }}>
             <img onClick={e => {
+              mobile_nav_ref.current.style.opacity = '1'
+              mobile_nav_ref.current.style.visibility = "visible"
             }} style={{
               height: "2.5em",
               filter: "invert(50%)"
