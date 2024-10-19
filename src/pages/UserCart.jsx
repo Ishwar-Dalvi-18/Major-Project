@@ -55,7 +55,7 @@ function UserCart() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "2em",
+          borderRadius: "0.5em",
           padding: "1em 0em",
           width: "100%",
           color: "black",

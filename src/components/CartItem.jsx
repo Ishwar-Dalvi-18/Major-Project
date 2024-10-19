@@ -41,7 +41,7 @@ function CartItem({
                     alignItems: "center",
                     backgroundColor: "#212121",
                     padding: "1em 2em",
-                    borderRadius: "2em",
+                    borderRadius: "1em",
                     gap: "1em"
                 }}>
                     <div style={{

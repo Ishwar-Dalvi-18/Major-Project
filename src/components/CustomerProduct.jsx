@@ -37,7 +37,7 @@ function CustomerProduct(
           justifySelf: "center",
           alignSelf: "center",
           border: "2px solid white",
-          height: "7em",
+          height: "5em",
           width: "100%",
           borderRadius: "1em",
           objectFit: "cover"

@@ -147,7 +147,7 @@ function CustomerProductView() {
           Product Information
         </div>
         <div style={{
-          backgroundColor: "rgb(0,0,0)",
+          backgroundColor: "whitesmoke",
           border: "0.1em solid rgb(27, 24, 24)",
           borderTopRightRadius: "1em",
           borderBottomRightRadius: "1em",
@@ -161,14 +161,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em",
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Name
@@ -189,14 +189,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em",
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Price
@@ -217,14 +217,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em",
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Availability
@@ -270,7 +270,7 @@ function CustomerProductView() {
           Seller Information
         </div>
         <div style={{
-          backgroundColor: "rgb(0,0,0)",
+          backgroundColor: "whitesmoke",
           border: "0.1em solid rgb(27, 24, 24)",
           borderTopRightRadius: "1em",
           borderBottomRightRadius: "1em",
@@ -299,14 +299,14 @@ function CustomerProductView() {
             justifyContent: "flex-start",
             alignItems: "center",
             //  borderBottom:"2px solid whitesmoke",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em"
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Name
@@ -326,14 +326,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em"
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Phone
@@ -353,14 +353,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em"
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Email
@@ -380,14 +380,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em"
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Country
@@ -407,14 +407,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em",
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               State
@@ -434,14 +434,14 @@ function CustomerProductView() {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            borderBottom: "2px solid whitesmoke",
+            borderBottom: "2px solid black",
             borderRadius: "1em",
           }}>
             <div style={{
               padding: "1em",
               fontWeight: "bold",
               borderTopLeftRadius: "0.5em",
-              color: "white",
+              color: "black",
               borderBottomLeftRadius: "0.5em",
             }}>
               Address
