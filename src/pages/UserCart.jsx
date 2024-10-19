@@ -43,13 +43,13 @@ function UserCart() {
         display: "flex",
         gap: "2em",
         flexWrap: "wrap",
-        justifyContent: "center"
+        justifyContent: "center",
       }}>
         {
           cartItems.map((value, i) => <CartItem key={value.id} id={value.id} quantity={value.quantity} reload={reload} setReload={setReload} index={i}/>)
         }
       </div>
-      {totalAmount > 0 &&
+      {totalAmount > 0 ?
         <div style={{
           marginTop: "2em",
           display: "flex",
@@ -62,6 +62,21 @@ function UserCart() {
           backgroundColor: "blueviolet"
         }}>
           Total Amount To Pay : {totalAmount} Rs
+        </div>: <div style={{
+          display:"flex",
+          justifyContent:"center",
+          alignItems:"center",
+          width:"100%",
+          height:"100%",
+          color:"black",
+          fontSize:"2em"
+        }}>
+          <div style={{
+            userSelect:"none",
+            padding:"0.5em 1em",
+            border:"0.1em solid blueviolet",
+            borderRadius:"2em"
+          }}>Your Cart Is Empty</div>
         </div>
       }
     </div>

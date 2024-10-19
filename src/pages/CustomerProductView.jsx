@@ -47,12 +47,17 @@ function CustomerProductView() {
       {!isLoading && <div style={{
         overflow: "auto"
       }} className='main-product-info-container'>
-        <div className='image-container'>
+        <div style={{
+          display:"flex",
+          width:"100%",
+          justifyContent:"center",
+          alignItems:"center"
+        }} className='image-container'>
           <img style={{
             objectFit: "cover",
             border: "0.3em solid rgb(44,44,44)",
-            borderRadius: "2em"
-          }} src={productInfo.image} alt="" />
+            borderRadius: "2em",
+          }} src={productInfo.image} alt=""/>
         </div>
         <div style={{
           color: "white",
