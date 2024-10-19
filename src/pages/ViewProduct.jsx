@@ -508,7 +508,7 @@ function ViewProduct({
                                     <img onClick={e => {
                                         try {
                                             if (count && q_unit && count) {
-                                                if (count > 0) {
+                                                if (count >= 0) {
                                                     let value = `${count} ${q_unit}`
                                                     console.log(value)
                                                     p_quantity_ref.current.value = value
