@@ -13,27 +13,31 @@ import { UserContext } from '../contexts/userContext'
 function ProductInventory() {
   const { url } = useContext(NetworkContext);
   const [products, setProducts] = useState([]);
-  const {setPreviousPage} = useContext(UserContext)
+  const { setPreviousPage } = useContext(UserContext)
   const { product, setProduct } = useContext(ProductContext)
+  const [reload, setReload] = useState(true);
   useEffect(() => {
     setPreviousPage("/profile/productinventory")
-    setIsLoading(true)
-    axios.get(`${url}api/products`, { withCredentials: true }).then(value => {
-      setProducts(value.data.response.products)
-      setIsLoading(false)
-    })
-  }, [])
+    if (reload === true) {
+      setIsLoading(true)
+      axios.get(`${url}api/products`, { withCredentials: true }).then(value => {
+        setProducts(value.data.response.products)
+        setIsLoading(false);
+        setReload(false);
+      })
+    }
+  }, [reload])
   const navigate = useNavigate()
   const { t } = useTranslation(['profile'])
   const [isLoading, setIsLoading] = useState(false)
   return (
     <>
-      {isLoading ? <div style={{height:"90vh",alignItems:"center"}} class="flex gap-4 p-4 flex-wrap justify-center">
-        <img className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/491270/loading-spinner.svg" alt="Loading icon"/>
+      {isLoading ? <div style={{ height: "90vh", alignItems: "center" }} class="flex gap-4 p-4 flex-wrap justify-center">
+        <img className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/491270/loading-spinner.svg" alt="Loading icon" />
       </div> : <>
-        <div className='pi-main-component'>
+        <div style={{ position: "relative" }} className='pi-main-component'>
           {
-            products.map(value => <Product key={value._id} id={value._id} quantity={value.quantity} price={value.price} name={value.name} img={value.image} />)
+            products.map(value => <Product key={value._id} setReload={setReload} id={value._id} quantity={value.quantity} price={value.price} name={value.name} img={value.image} />)
           }
         </div>
         <div className='pi-features-container'>

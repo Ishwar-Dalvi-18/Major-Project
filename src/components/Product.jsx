@@ -12,7 +12,8 @@ function Product(
     name,
     quantity,
     price,
-    img
+    img,
+    setReload
   }
 ) {
 
@@ -27,14 +28,36 @@ function Product(
   return (
     <div>
 
-      <div className='product-box'>
+      <div style={{position:"relative"}} className='product-box'>
 
         {/* <img style={{
           height: "1em",
           filter:"invert(100%)",
           width:"auto"
         }} src={delete_img} alt="" /> */}
+        <div style={{
+          position:"absolute",
+          display:"flex",
+          width:"100%",
+          left:"0",
+          top:"0",
+          alignItems:"center",
+          justifyContent:"flex-end",
+          paddingRight:"1em",
+          paddingTop:"1em"
+        }}>
+          <img style={{
+            height:"1.5em",
+            filter:"invert(100%)"
+          }} src={delete_img} alt="" onClick={async e=>{
+            const result = await axios.delete(`${url}api/product/${id}`,{withCredentials:true})
+            if(result.data.response.type){
+              console.log("Hello")
+              setReload(true);
+            }
+          }} />
 
+        </div>
         <img style={{
           justifySelf: "center",
           alignSelf: "center",
@@ -46,20 +69,20 @@ function Product(
         }} src={img} alt="" />
         <div className='row'>
           <div style={{
-            fontWeight:"bold",
-            color:"whitesmoke"
+            fontWeight: "bold",
+            color: "whitesmoke"
           }}>{t("p_name")}</div>:<div>{name}</div>
         </div>
         <div className='row'>
           <div style={{
-            fontWeight:"bold",
-            color:"whitesmoke"
+            fontWeight: "bold",
+            color: "whitesmoke"
           }} >{t("p_quantity")}</div>:<div>{`${quantity.count} ${quantity.unit}`}</div>
         </div>
         <div className='row'>
           <div style={{
-            fontWeight:"bold",
-            color:"whitesmoke"
+            fontWeight: "bold",
+            color: "whitesmoke"
           }}>{t("p_price")}</div>:<div>{`${price.amount} ${price.currency} per ${price.unit}`}</div>
         </div>
         <button onClick={e => {

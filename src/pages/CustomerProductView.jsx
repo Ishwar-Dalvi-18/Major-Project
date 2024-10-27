@@ -93,7 +93,11 @@ function CustomerProductView() {
           }}>
             <div>{alertInfo.msg}</div>
             <div style={{
-              marginTop:"1em"
+              marginTop:"1em",
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              gap:"1em"
             }}><button style={{
               backgroundColor:"blue",
               color:"white",
@@ -105,7 +109,20 @@ function CustomerProductView() {
                 show:false,
                 type:""
               })
-            }}>Ok</button></div>
+            }}>Ok</button>
+            <button style={{
+              backgroundColor:"blue",
+              color:"white",
+              padding:"0.5em 2em",
+              borderRadius:"0.5em"
+            }} onClick={e=>{
+              setAlertInfo({
+                msg:"",
+                show:false,
+                type:"",
+              })
+              navigate("/user/cart")
+            }}>View Cart</button></div>
           </div>
         </div>
       }
@@ -127,6 +144,7 @@ function CustomerProductView() {
             objectFit: "cover",
             border: "0.3em solid rgb(44,44,44)",
             borderRadius: "2em",
+            width:"20em"
           }} src={productInfo.image} alt="" />
         </div>
         <div style={{

@@ -9,6 +9,7 @@ function CartItem({
     id,
     quantity,
     reload,
+    arr,
     setReload,
     index,
 }) {
