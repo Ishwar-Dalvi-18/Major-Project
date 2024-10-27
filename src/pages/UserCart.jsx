@@ -4,14 +4,26 @@ import CartItem from '../components/CartItem'
 import { NetworkContext } from '../contexts/networkContext'
 import axios from 'axios'
 import { MDBBtn } from 'mdb-react-ui-kit'
+import hurray_img from '../images/yay-hooray.gif'
+import { useNavigate } from 'react-router-dom'
 
 function UserCart() {
+  const navigate = useNavigate()
   const { info, setInfo } = useContext(customerNavigationContext)
   const [cartItems, setCartItems] = useState([])
   const { url } = useContext(NetworkContext)
   const [reload, setReload] = useState(false)
   const [firstLoad, setFirstLoad] = useState(true)
   const [totalAmount, setTotalAmount] = useState(0)
+  const [showMessage, setShowMessage] = useState(false)
+  useEffect(()=>{
+    if(showMessage){
+      setTimeout(() => {
+        setShowMessage(false);
+        navigate("/user/purchased")
+      }, 2000);
+    }
+  },[showMessage])
   useEffect(() => {
     setInfo({
       currentpage: "cart"
@@ -48,7 +60,7 @@ function UserCart() {
           overflow: "auto"
         }}>
           {
-            cartItems.map((value, i,arr) => <CartItem key={value.id} arr={arr} id={value.id} quantity={value.quantity} reload={reload} setReload={setReload} index={i} />)
+            cartItems.map((value, i, arr) => <CartItem key={value.id} arr={arr} id={value.id} quantity={value.quantity} reload={reload} setReload={setReload} index={i} />)
           }
         </div>
         {totalAmount > 0 ?
@@ -92,12 +104,58 @@ function UserCart() {
             userSelect: "none",
             padding: "2em"
           }}>
-            <MDBBtn style={{
+            <MDBBtn onClick={async e => {
+              const result = await axios.post(`${url}api/user/purchased`, {
+                products: cartItems
+              }, { withCredentials: true });
+              if (result.data.response.type) {
+                const result2 = await axios.delete(`${url}api/user/entirecart`,{withCredentials:true});
+                if(result2.data.response.type){           
+                  setReload(true)
+                  setShowMessage(true)
+                }
+               
+              }
+            }} style={{
               backgroundColor: "black",
               color: "white"
             }}>
               Pay Online
             </MDBBtn>
+          </div>
+        }
+        {
+          showMessage && <div style={{
+            top:"0",
+            left:"0",
+            position:"fixed",
+            height:"100vh",
+            width:"100vw",
+            backgroundColor:'rgba(0, 0, 0, 0.8)'
+          }}><div style={{
+            position: "fixed",
+            top: "50%",
+            width: "100vw",
+            maxWidth: "600px",
+            transform: "translateY(-50%) translateX(-50%)",
+            zIndex: "20",
+            padding: "2em 5em",
+            borderRadius: "1em",
+            backgroundColor: "green",
+            left: "50%",
+            display:"flex",
+            flexDirection:"column",
+            color:"black",
+            fontWeight:"bold",
+            justifyContent:"center",
+            alignItems:"center",
+            // fontSize:"1.2em"
+          }}>
+            Products Purchased Successfully
+            <img style={{
+              height:"4em"
+            }} src={hurray_img} alt="" />
+          </div>
           </div>
         }
       </>

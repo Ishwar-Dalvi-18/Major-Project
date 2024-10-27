@@ -175,12 +175,14 @@ function User() {
       </div>
       <div className='user-extra-info-header'>
         <h1 ref={h1_ref} style={blinkCursor ? {
+          userSelect:"none",
           fontWeight: "500",
           fontSize: "1.5em",
           color: "inherit",
           borderRight: "3px solid blue",
           whiteSpace: "nowrap"
         } : {
+          userSelect:"none",
           fontWeight: "500",
           fontSize: "1.5em",
           color: "inherit",
