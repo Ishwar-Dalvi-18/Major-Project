@@ -10,3 +10,56 @@
         gap: 0.5em;
     }
 }
+
+.review-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-top: 2em;
+    /* @media (max-width:600px){
+        flex-direction: column;
+    } */
+}
+
+.user-selctors{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    color: black;
+    gap: 1em;
+}
+
+.user-selctors > div{
+    background-color: rgba(0, 157, 255, 0.144);
+    border-radius: 0.5em;
+    padding:1em;
+}
+
+.rating{
+    width: 100%;
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s ease-in-out;
+    padding: 0.1em 0em ;
+    gap:0.1em;
+}
+
+.rating:hover{
+    background-color: rgba(0, 157, 255, 0.295);
+}
+
+.user-entries{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5em;
+}
