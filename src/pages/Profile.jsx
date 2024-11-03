@@ -117,16 +117,28 @@ function Profile() {
     return (
         <>
             {!showWideScreenNav &&
-                <div className='mobile-nav-opener-container'>
-                    <img onClick={e => {
-                        document.body.getElementsByClassName("mobile-nav-opener-container")[0].style.filter = "blur(5px)";
-                        document.getElementById("content").style.filter = "blur(5px)"
-                        mob_nav_ref.current.style.visibility = "visible"
-                    }} className={"mobile-nav-opener"} style={{
-                        height: "2.5em"
-                    }}
-                        src={nav_bar_img} alt="" />
-                </div>
+                <>
+                    <div style={{ position: "fixed", width: "100%", zIndex: "20" }} className='mobile-nav-opener-container'>
+                        <img onClick={e => {
+                            document.body.getElementsByClassName("mobile-nav-opener-container")[0].style.filter = "blur(5px)";
+                            document.getElementById("content").style.filter = "blur(5px)"
+                            mob_nav_ref.current.style.visibility = "visible"
+                        }} className={"mobile-nav-opener"} style={{
+                            height: "2.5em"
+                        }}
+                            src={nav_bar_img} alt="" />
+                    </div>
+                    <div style={{ position: "sticky", visibility: "hidden" }} className='mobile-nav-opener-container'>
+                        <img onClick={e => {
+                            document.body.getElementsByClassName("mobile-nav-opener-container")[0].style.filter = "blur(5px)";
+                            document.getElementById("content").style.filter = "blur(5px)"
+                            mob_nav_ref.current.style.visibility = "visible"
+                        }} className={"mobile-nav-opener"} style={{
+                            height: "2.5em"
+                        }}
+                            src={nav_bar_img} alt="" />
+                    </div>
+                </>
             }
 
             <input onChange={e => {
@@ -187,7 +199,11 @@ function Profile() {
                                 }}>
                                     {t("feature1_route1")}
                                 </li>
-                                <li>{t("feature1_route2")}</li>
+                                <li onClick={e => {
+                                    setPreviousPage("/profile/productinventory")
+                                    navigate("productsselled")
+                                    closeMobileNav()
+                                }}>{t("feature1_route2")}</li>
                                 {/* <li>{t("feature1_route3")}</li> */}
                             </ul>
                         </div>
@@ -207,7 +223,11 @@ function Profile() {
                     {
                         expandCustomers && <div className='mob-nav-subfeature'>
                             <ul>
-                                <li>
+                                <li onClick={e => {
+                                    setPreviousPage("/profile/cutomerorders")
+                                    navigate("cutomerorders")
+                                    closeMobileNav()
+                                }}>
                                     {t("feature2_route1")}
                                 </li>
                                 <li>{t("feature2_route2")}</li>
@@ -227,7 +247,11 @@ function Profile() {
                     {
                         expandWeather && <div className='mob-nav-subfeature'>
                             <ul>
-                                <li>
+                                <li onClick={e => {
+                                    setPreviousPage("/profile/weather")
+                                    navigate("weather")
+                                    closeMobileNav()
+                                }}>
                                     {t("feature3_route1")}
                                 </li>
                             </ul>
@@ -369,7 +393,9 @@ function Profile() {
                                 <li onClick={e => {
                                     navigate("productinventory")
                                 }} className='sub-ul-item'>{t("feature1_route1")}</li>
-                                <li className='sub-ul-item'>{t("feature1_route2")}</li>
+                                <li onClick={e => {
+                                    navigate("productsselled")
+                                }} className='sub-ul-item'>{t("feature1_route2")}</li>
                                 {/* <li className='sub-ul-item'>{t("feature1_route3")}</li> */}
                             </ul>
                         }
@@ -378,7 +404,9 @@ function Profile() {
                         <li style={{ margin: "1em", fontWeight: "bolder", display: "flex", gap: "0.5em", alignItems: "center", justifyContent: "space-evenly" }}>{t("feature2")}<img style={{ filter: "invert(100%)" }} id='customers-img' className={"drop-down-arrow-img-f"} src={drop_down_arrow} alt="" /></li>
                         {
                             whatIsHovered === "customers" && <ul className='sub-ul'>
-                                <li className='sub-ul-item'>{t("feature2_route1")}</li>
+                                <li onClick={e => {
+                                    navigate("cutomerorders")
+                                }} className='sub-ul-item'>{t("feature2_route1")}</li>
                                 <li className='sub-ul-item'>{t("feature2_route2")}</li>
                             </ul>
                         }
@@ -387,7 +415,9 @@ function Profile() {
                         <li style={{ margin: "1em", fontWeight: "bolder", display: "flex", gap: "0.5em", alignItems: "center", justifyContent: "space-evenly" }}>{t("feature3")}<img style={{ filter: "invert(100%)" }} id="weather-img" className={"drop-down-arrow-img-f"} src={drop_down_arrow} alt="" /></li>
                         {
                             whatIsHovered === "weather" && <ul className='sub-ul'>
-                                <li className='sub-ul-item'>{t("feature3_route1")}</li>
+                                <li onClick={e => {
+                                    navigate("weather")
+                                }} className='sub-ul-item'>{t("feature3_route1")}</li>
                             </ul>
                         }
                     </ul>

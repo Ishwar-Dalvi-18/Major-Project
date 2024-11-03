@@ -35,7 +35,7 @@ body::-webkit-scrollbar{
     /* background-color: rgb(8, 144, 255); */
     /* background-color: rgb(71, 109, 15); */
     border-radius: 1.5em;
-    color: black;
+    color: rgb(0, 0, 0);
     display: flex;
     gap: 5em;
     flex-wrap: wrap;

@@ -18,7 +18,7 @@ function App() {
   const [currentpage, setCurrentpage] = useState("landing");
   const [socket, setSocket] = useState({});
   const [user, setUser] = useState({});
-  const [url, setUrl] = useState("http://192.168.0.224:8080/")
+  const [url, setUrl] = useState("http://localhost:8080/")
   useState(() => {
     let socket_temp;
     try {

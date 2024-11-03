@@ -23,9 +23,14 @@ function CustomerProduct(
   useEffect(() => {
   })
   return (
-    <div>
+    <div style={{
+      display:"flex",
+      flexGrow:1,
+      flexBasis:"300px",
+      maxWidth:"400px"
+    }}>
 
-      <div className='product-box'>
+      <div style={{width:"100%"}} className='product-box'>
 
         {/* <img style={{
           height: "1em",

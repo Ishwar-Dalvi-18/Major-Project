@@ -1,0 +1,27 @@
+.input_field_container {
+    justify-content: center;
+    align-items: center;
+    min-width: 450px;
+    padding: 2em 0em;
+    padding-left: 5em;
+    margin-top: 2em;
+    @media (max-width:500px) {
+        min-width: 0px;
+        width: 100%;
+        padding: 2em 0em;
+        padding-left: 2em;
+    }
+}
+
+.input_field_container::-webkit-scrollbar{
+    display: none;
+}
+.input_field_container > div{
+    padding-right: 5em;
+    @media (max-width:500px) {
+        padding-right: 2em;
+    }
+}
+.black-screen::-webkit-scrollbar{
+    display: none;
+}

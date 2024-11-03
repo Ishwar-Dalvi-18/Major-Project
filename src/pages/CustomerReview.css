@@ -1,0 +1,12 @@
+.header-text {
+    background: linear-gradient(to right,red, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-main-container{
+    gap: 3em;
+    @media (max-width:600px) {
+        gap: 0.5em;
+    }
+}

@@ -1,0 +1,18 @@
+.farmerorder-holder-div{
+    flex-direction: row;
+    @media (max-width:750px){
+        flex-direction: column;
+    }
+}
+
+.farmerorder-main-div{
+    border: 0.1em solid blueviolet;
+    padding: 1em 2em;
+    @media (max-width:500px){
+        padding: 1em 0.5em;
+        border: 0px solid blueviolet;
+        border-top: 0.1em solid blueviolet;
+        border-bottom: 0.1em solid blueviolet;
+    }
+
+}

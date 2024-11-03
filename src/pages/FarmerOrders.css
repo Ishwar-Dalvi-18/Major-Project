@@ -1,0 +1,24 @@
+body::-webkit-scrollbar{
+    display: none;
+}
+
+.farmerorders-main-container::-webkit-scrollbar{
+    display: none;
+}
+
+.farmerorders-main-container{
+    display: flex;
+    overflow: auto;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    border-radius: 0em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    border-top: 0.1em solid grey;
+    flex-wrap: wrap;
+    @media (max-width:750px){
+        border-radius: 0em;
+    }
+}
