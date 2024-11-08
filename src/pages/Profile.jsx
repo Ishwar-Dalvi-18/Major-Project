@@ -14,6 +14,7 @@ import language_img from '../images/language.png'
 import { useTranslation } from 'react-i18next';
 import ProductInventory from './ProductInventory';
 import { NetworkContext } from '../contexts/networkContext';
+import { SocketContext } from '../contexts/socketContext';
 
 function Profile() {
     const [showWideScreenNav, setShowWideScreenNav] = useState(true)
@@ -60,16 +61,15 @@ function Profile() {
     const [blurNavBar, setBlurNavBar] = useState(false)
     const { url } = useContext(NetworkContext);
     const [image, setImage] = useState("");
+    const { socket, setSocket } = useContext(SocketContext)
     useLayoutEffect(() => {
         if (!user.id) {
             axios.get(`${url}api/get/user`, {
                 withCredentials: true,
             }).then(result => {
-                console.log(result.data.response.user)
                 if (result.data.response.user) {
-                    console.log(result.data.response.user)
                     setUser({
-                        id: result.data.response.user.emails[0].value,
+                        id: result.data.response.user._id,
                     })
                 } else {
                     navigate("/login")
@@ -82,6 +82,7 @@ function Profile() {
             withCredentials: true,
         }).then(result => {
             if (result.data.response.user) {
+                console.log(socket)
                 setImage(result.data.response.user.image)
             }
         }).catch(err => {

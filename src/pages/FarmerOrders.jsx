@@ -46,13 +46,13 @@ function FarmerOrders() {
         </div>
       }
       {!isloading && !vieworder.view &&
-      <>
-      <div style={{display:"flex" , justifyContent:"center" , alignItems:"center",marginTop:"2em",fontWeight:"bold",letterSpacing:"0.1em",fontSize:"1.5em"}}><p style={{textAlign:"center"}}>Orders Received</p></div>
-        <div className='farmerorders-main-container'>
-          {
-            products.map(value => <FarmerOrder setVieworder={setVieworder} _id={value._id} image={value.image} amount={value.amount} name={value.name} quantity={value.quantity} key={value._id} />)
-          }
-        </div>
+        <>
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "2em", fontWeight: "bold", letterSpacing: "0.1em", fontSize: "1.5em" }}><p style={{ textAlign: "center" }}>Orders Received</p></div>
+          <div className='farmerorders-main-container'>
+            {
+              products.map(value => <FarmerOrder statusofproduct={value.statusofproduct} setVieworder={setVieworder} _id={value._id} image={value.image} amount={value.amount} name={value.name} quantity={value.quantity} key={value._id} />)
+            }
+          </div>
         </>
       }
       {
@@ -60,6 +60,24 @@ function FarmerOrders() {
           backgroundColor: "rgba(0,0,0,0.1)"
         }} className='farmerorders-main-container'>
           <FarmerProductOrderView statuseditable={true} reload={reload} setReload={setReload} setVieworder={setVieworder} _id={vieworder._id} />
+        </div>
+      }
+      {
+        products.length === 0 && !isloading && <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+          color: "black",
+          fontSize: "2em"
+        }}>
+          <div style={{
+            userSelect: "none",
+            padding: "0.5em 1em",
+            border: "0.1em solid blueviolet",
+            borderRadius: "2em"
+          }}>No Orders</div>
         </div>
       }
     </>

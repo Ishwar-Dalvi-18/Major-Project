@@ -42,8 +42,8 @@ function CustomerProduct(
           justifySelf: "center",
           alignSelf: "center",
           border: "2px solid white",
-          height: "5em",
-          width: "100%",
+          // height: "5em",
+          width: "50%",
           borderRadius: "1em",
           objectFit: "cover"
         }} src={img} alt="" />

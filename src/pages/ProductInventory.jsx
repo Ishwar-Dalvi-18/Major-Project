@@ -35,6 +35,7 @@ function ProductInventory() {
       {isLoading ? <div style={{ height: "90vh", alignItems: "center" }} class="flex gap-4 p-4 flex-wrap justify-center">
         <img className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/491270/loading-spinner.svg" alt="Loading icon" />
       </div> : <>
+      <div style={{display:"flex" , justifyContent:"center" , alignItems:"center",marginTop:"2em",fontWeight:"bold",letterSpacing:"0.1em",fontSize:"1.5em"}}><p style={{textAlign:"center",color:"#4F4F4F"}}>Products Inventory</p></div>
         <div style={{ position: "relative" }} className='pi-main-component'>
           {
             products.map(value => <Product key={value._id} setReload={setReload} id={value._id} quantity={value.quantity} price={value.price} name={value.name} img={value.image} />)
@@ -46,7 +47,7 @@ function ProductInventory() {
               type: "ADD",
               id: null
             })
-            navigate("/viewproduct")
+            navigate("/profile/viewproduct")
           }} className='pi-feature'><Button style={{ backgroundColor: "blue", color: "white", fontSize: "1em" }} variant="contained">{t("add_btn")}</Button></div>
         </div>
       </>

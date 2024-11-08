@@ -38,6 +38,7 @@ const router = createBrowserRouter(createRoutesFromChildren(
       <Route path='weather' element={<WeatherForecast/>}/>
       <Route path='cutomerorders' element={<FarmerOrders/>}/>
       <Route path='productsselled' element={<FarmerProductsSelled/>}/>
+      <Route path='viewproduct' element={<ViewProduct />} />
     </Route>
     <Route path='user' element={<User />}>
       <Route index element={<Navigate to={"/user/buy"} />} />
@@ -51,7 +52,7 @@ const router = createBrowserRouter(createRoutesFromChildren(
     <Route path='signup' element={<Signup />} />
     <Route path='home' element={<Home />} />
     <Route path='myinfo' element={<MyInfo />} />
-    <Route path='viewproduct' element={<ViewProduct />} />
+    {/* <Route path='viewproduct' element={<ViewProduct />} /> */}
   </Route>
 ))
 

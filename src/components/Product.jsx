@@ -26,9 +26,15 @@ function Product(
   })
   const { product, setProduct } = useContext(ProductContext);
   return (
-    <div>
+    <div style={{
+      flexGrow:1,
+      display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+      maxWidth:"400px"
+    }}>
 
-      <div style={{position:"relative"}} className='product-box'>
+      <div style={{position:"relative",width:"100%"}} className='product-box'>
 
         {/* <img style={{
           height: "1em",
@@ -62,8 +68,6 @@ function Product(
           justifySelf: "center",
           alignSelf: "center",
           border: "2px solid white",
-          height: "4em",
-          width: "4em",
           borderRadius: "50%",
           objectFit: "cover"
         }} src={img} alt="" />
@@ -91,7 +95,7 @@ function Product(
             type: "VIEW/EDIT",
             id: id
           })
-          navigate("/viewproduct")
+          navigate("/profile/viewproduct")
         }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded">
           {t("p_btn")}
         </button>

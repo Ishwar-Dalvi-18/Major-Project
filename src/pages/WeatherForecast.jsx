@@ -18,7 +18,9 @@ function WeatherForecast() {
     const [alertmessage, setAlertmessage] = useState({
         message: "",
         toShow: false,
-        type: ""
+        type: "",
+        timeout: 0,
+        iscancelable:true
     });
     const [weatherInfo, setWeatherInfo] = useState({
         condition: {
@@ -51,14 +53,18 @@ function WeatherForecast() {
                 setAlertmessage({
                     message: `Location And Weather Retrived Successfully`,
                     toShow: true,
-                    type: "s"
+                    type: "s",
+                    timeout:2000,
+                    iscancelable:true
                 })
             }, (positionError) => {
                 setIsloading(false)
                 setAlertmessage({
                     message: `Unable to access location of device`,
                     toShow: true,
-                    type: "e"
+                    type: "e",
+                    timeout:100,
+                    iscancelable:false
                 })
             }, {
                 enableHighAccuracy: true
@@ -67,19 +73,23 @@ function WeatherForecast() {
             setAlertmessage({
                 message: "Your browser doesnt support the feature for location",
                 toShow: true,
-                type: "e"
+                type: "e",
+                iscancelable:false,
+                timeout:100
             })
         }
     }, [reload])
     useEffect(() => {
         if (alertmessage.toShow) {
-            setTimeout(() => {
-                setAlertmessage({
-                    message: "",
-                    toShow: false
-                })
-                rotateComponents()
-            }, 2000)
+            if (alertmessage.iscancelable) {
+                setTimeout(() => {
+                    setAlertmessage({
+                        message: "",
+                        toShow: false
+                    })
+                    rotateComponents()
+                }, alertmessage.timeout)
+            }
         }
     }, [alertmessage])
     return (

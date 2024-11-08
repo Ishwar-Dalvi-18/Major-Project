@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import './User.css'
 import nav_bar_img from '../images/navigation-bar.png'
@@ -6,6 +6,11 @@ import { customerNavigationContext } from '../contexts/customerNavigationContext
 import CustomerProductView from './CustomerProductView'
 import { customerProductContext } from '../contexts/customerProductContext'
 import close_img from '../images/close.png'
+import { UserContext } from '../contexts/userContext'
+import axios from 'axios'
+import { NetworkContext } from '../contexts/networkContext'
+import { SocketContext } from '../contexts/socketContext'
+import { io } from 'socket.io-client'
 
 const isWrapping = (element) => {
   const afterHeight = element.clientHeight;
@@ -27,8 +32,27 @@ function User() {
   const [info, setInfo] = useState({})
   const [id, setId] = useState("");
   const mobile_nav_ref = useRef(null);
+  const { user, setUser } = useContext(UserContext)
+  const { url } = useContext(NetworkContext)
+  const { socket, setSocket } = useContext(SocketContext)
+
   useEffect(() => {
     document.body.style.backgroundColor = "white"
+    if (!user.id) {
+      axios.get(`${url}api/get/user`, {
+        withCredentials: true,
+      }).then(result => {
+        if (result.data.response.user) {
+          setUser({
+            id: result.data.response.user._id,
+          })
+        } else {
+          navigate("/login")
+        }
+      }).catch(err => {
+        console.log(err.message)
+      })
+    }
 
     let index = 0;
     let slice_count = 0;
@@ -43,12 +67,9 @@ function User() {
       if (!wrapdetected) {
         if (isWrapping(h1_ref.current)) {
           wrapdetected = true
-          console.log("Hello")
-          console.log(slice_count)
           slice_count = slice_count + 1;
         }
       } else {
-        console.log(slice_count)
         slice_count = slice_count + 1;
       }
       if (index + 1 === typed_text_value.length) {
@@ -63,126 +84,131 @@ function User() {
     setInterval(() => {
       setBlinkCursor(pre => !pre)
     }, 200)
+
+    return () => {
+      document.body.style.backgroundColor = "black"
+    }
   }, [])
+
 
   return (
     <div className='user-main-container'>
       <div ref={mobile_nav_ref} className='user-mobile-nav'>
         <div style={{
-          width:"100%",
-          display:"flex",
-          flexDirection:"column",
-          padding:"1em",
-          marginBottom:"2em",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          padding: "1em",
+          marginBottom: "2em",
         }}>
-          <img onClick={e=>{
+          <img onClick={e => {
             e.preventDefault();
             mobile_nav_ref.current.style.opacity = '0'
-            setTimeout(()=>{
+            setTimeout(() => {
               mobile_nav_ref.current.style.visibility = "hidden"
-            },200)
+            }, 200)
           }} style={{
-            filter:"invert(100%)",
-            justifySelf:"flex-end",
-            alignSelf:"flex-end",
-            height:"2em"
+            filter: "invert(100%)",
+            justifySelf: "flex-end",
+            alignSelf: "flex-end",
+            height: "2em"
           }} src={close_img} alt="" />
         </div>
-        <div onClick={e=>{
+        <div onClick={e => {
           mobile_nav_ref.current.style.opacity = '0'
-          setTimeout(()=>{
+          setTimeout(() => {
             mobile_nav_ref.current.style.visibility = "hidden"
-          },200)
+          }, 200)
           navigate("/user/buy")
-        }} style={info.currentpage==="buy"?{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
-          color: "blue", 
+        }} style={info.currentpage === "buy" ? {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
+          color: "blue",
           fontWeight: "bold"
-        }:{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
+        } : {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
         }}>
           Buy Products
         </div>
-        <div onClick={e=>{
+        <div onClick={e => {
           mobile_nav_ref.current.style.opacity = '0'
-          setTimeout(()=>{
+          setTimeout(() => {
             mobile_nav_ref.current.style.visibility = "hidden"
-          },200)
+          }, 200)
           navigate("/user/purchased")
-        }} style={info.currentpage==="purchased"?{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
-          color: "blue", 
+        }} style={info.currentpage === "purchased" ? {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
+          color: "blue",
           fontWeight: "bold"
-        }:{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
+        } : {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
         }}>
           Products Purchased
         </div>
-        <div onClick={e=>{
+        <div onClick={e => {
           mobile_nav_ref.current.style.opacity = '0'
-          setTimeout(()=>{
+          setTimeout(() => {
             mobile_nav_ref.current.style.visibility = "hidden"
-          },200)
+          }, 200)
           navigate("/user/cart")
-        }} style={info.currentpage==="cart"?{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
-          color: "blue", 
+        }} style={info.currentpage === "cart" ? {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
+          color: "blue",
           fontWeight: "bold"
-        }:{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
+        } : {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
         }}>
           Products Cart
         </div>
-        <div onClick={e=>{
+        <div onClick={e => {
           mobile_nav_ref.current.style.opacity = '0'
-          setTimeout(()=>{
+          setTimeout(() => {
             mobile_nav_ref.current.style.visibility = "hidden"
-          },200)
+          }, 200)
           navigate("/user/profile")
-        }} style={info.currentpage==="profile"?{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
-          color: "blue", 
+        }} style={info.currentpage === "profile" ? {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
+          color: "blue",
           fontWeight: "bold"
-        }:{
-          width:"100%",
-          paddingLeft:"1em",
-          fontSize:"1.5em",
-          marginBottom:"0.5em",
+        } : {
+          width: "100%",
+          paddingLeft: "1em",
+          fontSize: "1.5em",
+          marginBottom: "0.5em",
         }}>
           Profile
         </div>
       </div>
       <div className='user-extra-info-header'>
         <h1 ref={h1_ref} style={blinkCursor ? {
-          userSelect:"none",
+          userSelect: "none",
           fontWeight: "500",
           fontSize: "1.5em",
           color: "inherit",
           borderRight: "3px solid blue",
           whiteSpace: "nowrap"
         } : {
-          userSelect:"none",
+          userSelect: "none",
           fontWeight: "500",
           fontSize: "1.5em",
           color: "inherit",
@@ -237,7 +263,7 @@ function User() {
           </nav>
         }
         <customerNavigationContext.Provider value={{ info, setInfo }}>
-          <customerProductContext.Provider value={{id:id,setId:setId}} >
+          <customerProductContext.Provider value={{ id: id, setId: setId }} >
             <Outlet />
           </customerProductContext.Provider>
         </customerNavigationContext.Provider>

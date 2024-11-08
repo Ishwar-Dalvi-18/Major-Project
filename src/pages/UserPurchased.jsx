@@ -72,11 +72,12 @@ function UserPurchased() {
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1em", marginTop: "2em" }}>
               <MDBBtn onClick={async e => {
                 setShowpopper(false)
+                setIsLoading(true)
                 const result = await axios.delete(`${url}api/user/productpurchased/${idtodelete}`)
                 if (result.data.response.type) {
                   setReload(true)
                   idtodelete("")
-
+                  setIsLoading(false)
                 }
               }}>Yes</MDBBtn>
               <MDBBtn onClick={e => {

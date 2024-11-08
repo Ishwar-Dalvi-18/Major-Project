@@ -72,6 +72,14 @@ function PurchasedProduct(
           <div style={{
             fontWeight: "bold",
             color: "green"
+          }}>Product ID</div>:<div style={{
+            color: "aqua"
+          }}>{_id}</div>
+        </div>
+        <div className='row'>
+          <div style={{
+            fontWeight: "bold",
+            color: "green"
           }}>Product Name</div>:<div style={{
             color: "aqua"
           }}>{name}</div>
@@ -147,7 +155,6 @@ function PurchasedProduct(
             <MDBBtn onClick={e=>{
               navigate("/user/review")
             }} style={{padding:"1em 2em"}}>Add Review</MDBBtn>
-            <MDBBtn style={{padding:"1em 2em"}}>Report Complaint</MDBBtn>
             </>
           }
         </div>

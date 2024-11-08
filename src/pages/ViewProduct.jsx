@@ -207,6 +207,7 @@ function ViewProduct({
         p_price_ref.current.disabled = true
 
         return () => {
+            document.body.style.backgroundColor="white"
             setProduct({
                 id: null,
                 type: ""

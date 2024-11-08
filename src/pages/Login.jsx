@@ -11,6 +11,7 @@ import googlelogo from '../images/google.png'
 import { Button } from '@material-tailwind/react';
 import { useTranslation } from 'react-i18next';
 import { NetworkContext } from '../contexts/networkContext';
+import { SocketContext } from '../contexts/socketContext';
 
 function Login() {
     const { i18n } = useTranslation();
@@ -21,6 +22,7 @@ function Login() {
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const { url, setUrl } = useContext(NetworkContext);
+    const {socket,setSocket} = useContext(SocketContext)
     useEffect(() => {
         setCurrentpage("login");
         axios.get(`${url}api/get/user`, { withCredentials: true }).then(value => {
@@ -32,6 +34,7 @@ function Login() {
                 if(value.data.response.user.role==="farmer"){
                     navigate("/profile")
                 }else{
+                    console.log("Customer")
                     navigate("/user");
                 }
                 
@@ -77,9 +80,17 @@ function Login() {
                 id: result.data.response.user.email
             })
             if(result.data.response.user.role==="farmer"){
-                navigate("/profile");
+                socket.emit("sending-id",{id:result.data.response.user._id})
+                socket.on("id-confirmed",()=>{
+                    navigate("/profile");
+                })
+                
             }else{
-                navigate("/user")
+                socket.emit("sending-id",{id:result.data.response.user._id})
+                socket.on("id-confirmed",()=>{
+                    navigate("/user")
+                })
+                
             }
         } else {
             setsettings({
