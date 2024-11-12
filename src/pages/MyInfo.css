@@ -47,6 +47,10 @@
     }
 } */
 
+.logout-btn:hover{
+    color: red;
+}
+
 .myinfo-content-firsthalf {
     /* background-color: #363434; */
     display: flex;

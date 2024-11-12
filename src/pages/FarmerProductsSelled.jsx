@@ -37,7 +37,7 @@ function FarmerProductsSelled() {
           left: "0",
           height: "100%",
           zIndex: "10",
-          backgroundColor: "rgba(0,0,0,0)",
+          backgroundColor: "rgba(0,0,0,0.8)",
         }}>
 
         </div>
@@ -46,7 +46,7 @@ function FarmerProductsSelled() {
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
-          position: "fixed",
+          position:"absolute",
           top: "50%",
           left: "50%",
           zIndex: "20",

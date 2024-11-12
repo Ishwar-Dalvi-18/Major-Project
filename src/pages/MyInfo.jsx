@@ -71,6 +71,7 @@ function MyInfo() {
     return (
         <>
             <div className='mynavbar-selection-box' style={{ visibility: viewImg ? `visible` : "hidden", paddingLeft: "0.3em", paddingTop: "0.3em", paddingRight: "0.3em", paddingBottom: "1em" }}>
+                
                 <img style={{
                     objectFit: "contain",
                     borderTopLeftRadius: "1em",
@@ -136,7 +137,19 @@ function MyInfo() {
 
                     </div>
                     <div className='myinfo-content'>
-                        <div className='myinfo-content-firsthalf'>
+                        <div style={{
+                            position:"relative"
+                        }} className='myinfo-content-firsthalf'>
+                            <div style={{
+                                position:"absolute",
+                                top:"0.5em",
+                                right:"1em"
+                            }}>
+                                <button style={{
+                                    fontSize:"0.9em",
+                                    backgroundColor:"#141414",
+                                }} className='logout-btn'>Logout</button>
+                            </div>
                             <div style={{
                                 display: "flex",
                                 flexDirection: "column",
@@ -276,7 +289,7 @@ function MyInfo() {
                                     else {
                                         setIsEditting(true)
                                     }
-                                }} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     {isEditting ? t("save") : t("edit")}
                                 </button>
                             </div>
