@@ -206,6 +206,15 @@ body::-webkit-scrollbar{
         
     }
 }
+.special-btn{
+    transition: background-color 0.2s ease-in-out;
+    transition: font-size 0.5s ease-in-out;
+}
+
+.special-btn:hover{
+    background-color: rgb(0, 20, 27);
+    font-size: 1.1em;
+}
 
 .mobile-nav-img{
     height: 1em;

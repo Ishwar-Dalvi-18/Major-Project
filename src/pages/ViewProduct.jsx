@@ -625,6 +625,21 @@ function ViewProduct({
                                 }
                             </div>
                             <div style={{
+                                paddingTop: "1em",
+                                paddingBottom: "1em",
+                                width:"100%",
+                                display:"flex",
+                                justifyContent:"center",
+                                alignItems:"center"
+                            }} className='my-3'>
+                                <button className='special-btn' style={{
+                                    border:"0.1em solid blueviolet",
+                                    padding:'0.5em 2em',
+                                    borderRadius:"0.5em",
+                                    fontWeight:"bold"
+                                }}>Add product images</button>
+                            </div>
+                            <div style={{
                                 visibility: btn === "no" ? "hidden" : "visible",
                                 display: btn === "no" ? "none" : "flex",
                                 justifyContent: "center",
